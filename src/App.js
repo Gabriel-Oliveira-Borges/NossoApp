@@ -1,39 +1,47 @@
 import React from 'react';
-import {StyleSheet, Button, View} from 'react-native';
+import {StyleSheet, Button, Text} from 'react-native';
 import {connect} from 'react-redux';
-import {changeStack} from './redux/actions/navigationActions';
 import {ChangeStackHandler} from './utils/navigation/ChangeStackHandler';
+import {FIRST_USE_STACK} from './utils/navigation/NavigationConst';
+import {isFirstUse} from './utils/storage/NavigationStorage';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount() {
+    ChangeStackHandler.onAppStarted();
+  }
+
+  renderFirstUse = () => (
+    <Button
+      title="Primeiro uso. Mudar"
+      onPress={ChangeStackHandler.changeToDrawerNavigation}
+    />
+  );
+
+  renderDrawer = () => (
+    <Button
+      title="Drawer. Mudar"
+      onPress={ChangeStackHandler.changeToFirstUseNavigation}
+    />
+  );
+
+  renderLoading = () => <Text>Carregando</Text>;
+
   render() {
-    console.log(this.props);
-    return (
-      <View>
-        <Button
-          title="Clica ae"
-          onPress={ChangeStackHandler.changeToDrawerNavigation}
-        />
-        <Button
-          title="Clica ae"
-          onPress={ChangeStackHandler.changeToFirstUseNavigation}
-        />
-      </View>
-    );
+    const {currentStack} = this.props;
+    return !currentStack
+      ? this.renderLoading()
+      : currentStack === FIRST_USE_STACK
+      ? this.renderFirstUse()
+      : this.renderDrawer();
   }
 }
 
-const styles = StyleSheet.create({});
-
 const mapStateToProps = (state) => ({
   currentStack: state.navigation.currentStack,
-});
-
-const mapDispatchProps = (dispatch) => ({
-  changeStack: (newStack) => dispatch(changeStack(newStack)),
 });
 
 export default connect(mapStateToProps)(App);
