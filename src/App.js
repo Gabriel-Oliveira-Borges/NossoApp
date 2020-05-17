@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Button} from 'react-native';
+import {StyleSheet, Button, View} from 'react-native';
 import {connect} from 'react-redux';
 import {changeStack} from './redux/actions/navigationActions';
+import {ChangeStackHandler} from './utils/navigation/ChangeStackHandler';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,18 @@ class App extends React.Component {
 
   render() {
     console.log(this.props);
-    return <Button title="Clica ae" />;
+    return (
+      <View>
+        <Button
+          title="Clica ae"
+          onPress={ChangeStackHandler.changeToDrawerNavigation}
+        />
+        <Button
+          title="Clica ae"
+          onPress={ChangeStackHandler.changeToFirstUseNavigation}
+        />
+      </View>
+    );
   }
 }
 
