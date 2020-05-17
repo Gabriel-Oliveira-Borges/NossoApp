@@ -1,0 +1,3 @@
+class ChangeStackHandler {
+  static changeToDrawerNavigation() {}
+}
