@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, Button, Text} from 'react-native';
+import {Button, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {ChangeStackHandler} from './utils/navigation/ChangeStackHandler';
 import {FIRST_USE_STACK} from './utils/navigation/NavigationConst';
-import {isFirstUse} from './utils/storage/NavigationStorage';
+import Backend from './connection/Backend';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +24,8 @@ class App extends React.Component {
   renderDrawer = () => (
     <Button
       title="Drawer. Mudar"
-      onPress={ChangeStackHandler.changeToFirstUseNavigation}
+      // onPress={ChangeStackHandler.changeToFirstUseNavigation}
+      onPress={Backend.teste}
     />
   );
 
