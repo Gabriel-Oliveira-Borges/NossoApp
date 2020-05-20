@@ -9,16 +9,17 @@ class DrawerScreenHeader extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.props.openDrawer}>
+      <TouchableOpacity
+        onPress={this.props.navigationProps.navigation.openDrawer}>
         <Text>Icone</Text>
       </TouchableOpacity>
     );
   }
 }
 
-const options = (openDrawer) => ({
+const options = (props) => ({
   title: 'Título genérico',
-  headerLeft: () => <DrawerScreenHeader openDrawer={openDrawer} />,
+  headerLeft: () => <DrawerScreenHeader navigationProps={props} />,
   headerStyle: {
     backgroundColor: '#FF9800',
   },

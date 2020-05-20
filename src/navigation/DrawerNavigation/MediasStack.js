@@ -11,7 +11,7 @@ function MediasStack(props) {
         name="MediaScreen"
         component={MediaScreen}
         options={{
-          ...DrawerScreenHeaderOptions(props.navigation.openDrawer),
+          ...DrawerScreenHeaderOptions(props),
           title: 'Mudar aqui',
         }}
       />
