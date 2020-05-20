@@ -5,8 +5,8 @@ import {ChangeStackHandler} from './utils/navigation/ChangeStackHandler';
 import {FIRST_USE_STACK} from './utils/navigation/NavigationConst';
 import {AddToRedux} from './utils/data/AddToRedux';
 import {createStackNavigator} from '@react-navigation/stack';
-import FirstUseStack from './navigation/FirstUseStack';
-import DrawerNavigation from './navigation/DrawerNavigation';
+import FirstUseStack from './navigation/FirstUseStack/FirstUseStack';
+import DrawerNavigation from './navigation/DrawerNavigation/DrawerNavigation';
 
 class App extends React.Component {
   constructor(props) {

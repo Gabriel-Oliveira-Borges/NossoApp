@@ -5,8 +5,9 @@ import {
   DrawerItemList,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import MediasScreen from '../screens/drawerFlow/MediasScreen';
-import {ChangeStackHandler} from '../utils/navigation/ChangeStackHandler';
+import MediasScreen from '../../screens/drawerFlow/MediasScreen';
+import MediasStack from './MediasStack';
+import {ChangeStackHandler} from '../../utils/navigation/ChangeStackHandler';
 import {View, Text} from 'react-native';
 
 const CloseDrawerView = () => (
@@ -40,7 +41,7 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigation() {
   return (
     <Drawer.Navigator keyboardDismissMode drawerContent={CustomDrawerContent}>
-      <Drawer.Screen name="Mídias" component={MediasScreen} />
+      <Drawer.Screen name="Mídias" component={MediasStack} />
     </Drawer.Navigator>
   );
 }
