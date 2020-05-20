@@ -6,6 +6,7 @@ import {FIRST_USE_STACK} from './utils/navigation/NavigationConst';
 import {AddToRedux} from './utils/data/AddToRedux';
 import {createStackNavigator} from '@react-navigation/stack';
 import FirstUseStack from './navigation/FirstUseStack';
+import DrawerNavigation from './navigation/DrawerNavigation';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,14 +20,7 @@ class App extends React.Component {
 
   renderFirstUse = () => FirstUseStack();
 
-  renderDrawer = () => {
-    return (
-      <Button
-        title="Drawer. Mudar"
-        onPress={ChangeStackHandler.changeToFirstUseNavigation}
-      />
-    );
-  };
+  renderDrawer = () => DrawerNavigation();
 
   renderLoading = () => <Text>Carregando</Text>;
 

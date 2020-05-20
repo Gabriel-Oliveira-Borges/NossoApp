@@ -4,7 +4,7 @@ import Index from '../screens/firstUseFlow/First';
 import Second from '../screens/firstUseFlow/Second';
 
 const Stack = createStackNavigator();
-function MyStack() {
+function FirstUseStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="First" component={Index} />
@@ -13,4 +13,4 @@ function MyStack() {
   );
 }
 
-export default MyStack;
+export default FirstUseStack;
