@@ -1,11 +1,16 @@
 import React from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Button} from 'react-native';
 import {ChangeStackHandler} from '../../utils/navigation/ChangeStackHandler';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FirstUseItem from '../../components/FirstUseItem';
+import {connect} from 'react-redux';
+import {
+  setFirstUseData,
+  setFirstUseLoading,
+} from '../../redux/actions/firstUseActions';
 
-export default class Index extends React.Component {
+class StartScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,6 +60,7 @@ export default class Index extends React.Component {
 
   render() {
     const {data} = this.state;
+    console.log(this.props);
     return (
       <SafeAreaView style={styles.container}>
         <Carousel
@@ -73,10 +79,10 @@ export default class Index extends React.Component {
           onSnapToItem={(index) => this.setState({activeSlideIndex: index})}
         />
         {this.renderPagination()}
-        {/* <Button
+        <Button
           title="Primeiro uso. Mudar"
-          onPress={ChangeStackHandler.changeToDrawerNavigation}
-        /> */}
+          onPress={() => this.props.setData(!this.props.data)}
+        />
       </SafeAreaView>
     );
   }
@@ -88,3 +94,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rebeccapurple',
   },
 });
+
+const mapStateToProps = (state) => ({
+  loading: state.firstUse.loading,
+  data: state.firstUse.data,
+});
+
+// Tirar esse cara daqui e botar no mapper, dps de pegar os dados do firebase
+const mapDispatchToProps = (dispatch) => ({
+  setLoading: (loading) => dispatch(setFirstUseLoading(loading)),
+  setData: (data) => dispatch(setFirstUseData(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartScreen);
