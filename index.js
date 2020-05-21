@@ -1,4 +1,4 @@
-import {AppRegistry} from 'react-native';
+import {AppRegistry, StatusBar} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
 import React from 'react';
@@ -9,9 +9,11 @@ import 'react-native-gesture-handler';
 
 class AppClass extends React.Component {
   render() {
+    console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <NavigationContainer>
+          <StatusBar hidden={true} />
           <App />
         </NavigationContainer>
       </Provider>

@@ -41,7 +41,7 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigation() {
   return (
     <Drawer.Navigator keyboardDismissMode drawerContent={CustomDrawerContent}>
-      <Drawer.Screen name="Mídias" component={MediasStack} />
+      <Drawer.Screen name="Mudar aqui" component={MediasStack} />
     </Drawer.Navigator>
   );
 }
