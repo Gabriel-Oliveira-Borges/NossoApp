@@ -1,7 +1,7 @@
 import {UPDATE_MEDIAS, SET_LOADING} from '../constants/mediaConst';
 
 const initialNavigationState = {
-  files: undefined,
+  data: undefined,
   loading: false,
 };
 
@@ -10,7 +10,7 @@ export const MediaReducer = (state = initialNavigationState, action) => {
     case UPDATE_MEDIAS:
       return {
         ...state,
-        files: action.medias,
+        data: action.medias,
         loading: false,
       };
     case SET_LOADING:
