@@ -4,10 +4,6 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FirstUseItem from '../../components/FirstUseItem';
 import {connect} from 'react-redux';
-import {
-  setFirstUseData,
-  setFirstUseLoading,
-} from '../../redux/actions/firstUseActions';
 import {AddToRedux} from '../../utils/data/AddToRedux';
 
 class StartScreen extends React.Component {
@@ -39,6 +35,8 @@ class StartScreen extends React.Component {
           marginHorizontal: 5,
           backgroundColor: 'rgba(255, 250, 240, 0.85)',
         }}
+        tappableDots={true}
+        carouselRef={this._carousel}
       />
     );
   };
