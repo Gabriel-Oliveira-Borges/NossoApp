@@ -6,6 +6,7 @@ import ImageWithText from '../../components/ImageWithText';
 import {ScrollView} from 'react-native-gesture-handler';
 import LoadingComponent from '../../components/LoadingComponent';
 import BackgroundComponent from '../../components/BackgroundComponent';
+import FloatingButton from '../../components/FloatingButton';
 
 class MediaScreen extends React.Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class MediaScreen extends React.Component {
 
   componentWillMount() {
     AddToRedux.getAllMedias();
+  }
+
+  handleOnAddMediaClick() {
+    console.log('aqu');
   }
 
   renderLoading = () => <LoadingComponent />;
@@ -53,6 +58,7 @@ class MediaScreen extends React.Component {
       <SafeAreaView style={styles.container}>
         <BackgroundComponent>
           {!data ? this.renderNoData() : this.renderMedias()}
+          <FloatingButton onPress={this.handleOnAddMediaClick} />
         </BackgroundComponent>
       </SafeAreaView>
     );
