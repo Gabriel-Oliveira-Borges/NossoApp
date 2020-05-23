@@ -12,7 +12,7 @@ export async function setFirstUse(value) {
 export async function isFirstUse() {
   try {
     const result = await AsyncStorage.getItem(FIRST_USE_KEY);
-    return !!JSON.parse(result);
+    return JSON.parse(result || result === null);
   } catch (exception) {
     console.log('Ocorreu um erro: ', exception);
   }

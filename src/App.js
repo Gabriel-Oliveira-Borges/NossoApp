@@ -1,12 +1,10 @@
 import React from 'react';
-import {Button, Text, View, Image, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {ChangeStackHandler} from './utils/navigation/ChangeStackHandler';
 import {FIRST_USE_STACK} from './utils/navigation/NavigationConst';
-import {AddToRedux} from './utils/data/AddToRedux';
-import {createStackNavigator} from '@react-navigation/stack';
 import FirstUseStack from './navigation/FirstUseStack/FirstUseStack';
 import DrawerNavigation from './navigation/DrawerNavigation/DrawerNavigation';
+import LoadingComponent from './components/LoadingComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,14 +13,13 @@ class App extends React.Component {
 
   componentWillMount() {
     ChangeStackHandler.onAppStarted();
-    // AddToRedux.getAllMedias();
   }
 
   renderFirstUse = () => FirstUseStack();
 
   renderDrawer = () => DrawerNavigation();
 
-  renderLoading = () => <Text>Carregando</Text>;
+  renderLoading = () => <LoadingComponent />;
 
   render() {
     const {currentStack} = this.props;

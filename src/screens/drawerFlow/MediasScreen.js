@@ -1,16 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import {AddToRedux} from '../../utils/data/AddToRedux';
 import ImageWithText from '../../components/ImageWithText';
 import {ScrollView} from 'react-native-gesture-handler';
+import LoadingComponent from '../../components/LoadingComponent';
 
 class MediaScreen extends React.Component {
   constructor(props) {
@@ -23,11 +17,7 @@ class MediaScreen extends React.Component {
     AddToRedux.getAllMedias();
   }
 
-  renderLoading = () => (
-    <View style={styles.messageView}>
-      <ActivityIndicator color="rgba(0, 0, 0, 0.85)" size="large" />
-    </View>
-  );
+  renderLoading = () => <LoadingComponent />;
 
   renderNoData = () => (
     <View style={styles.messageView}>
@@ -65,6 +55,9 @@ class MediaScreen extends React.Component {
     );
   }
 }
+
+// #15002B
+// #6D24AA
 
 const styles = StyleSheet.create({
   container: {

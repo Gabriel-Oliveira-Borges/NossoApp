@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Dimensions, ActivityIndicator, View} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FirstUseItem from '../../components/FirstUseItem';
 import {connect} from 'react-redux';
 import {AddToRedux} from '../../utils/data/AddToRedux';
+import LoadingComponent from '../../components/LoadingComponent';
 
 class StartScreen extends React.Component {
   constructor(props) {
@@ -41,16 +42,7 @@ class StartScreen extends React.Component {
     );
   };
 
-  renderLoading = () => (
-    <SafeAreaView
-      style={{
-        ...styles.container,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <ActivityIndicator color="rgba(255, 250, 240, 0.85)" size="large" />
-    </SafeAreaView>
-  );
+  renderLoading = () => <LoadingComponent />;
 
   renderCarousel = () => {
     const {data} = this.props;
