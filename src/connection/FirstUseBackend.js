@@ -9,7 +9,7 @@ export default class FirstUseBackend {
         .orderBy('index')
         .onSnapshot(callback);
     } catch (e) {
-      console.log('getFirstUseData error: ', e);
+      console.error('getFirstUseData error: ', e);
     }
   }
 }

@@ -40,8 +40,8 @@ class MediaScreen extends React.Component {
     const {data} = this.props;
     return (
       <ScrollView style={styles.container}>
-        {data.map((item) => (
-          <View style={{padding: 20}}>
+        {data.map((item, i) => (
+          <View key={i} style={{padding: 20}}>
             <ImageWithText item={item} />
           </View>
         ))}
@@ -55,7 +55,7 @@ class MediaScreen extends React.Component {
     // Eu posso pegar esse estilo do Elements https://demos.creative-tim.com/argon-react-native/?_ga=2.115459524.334557525.1589952715-1038485479.1587607471
     // e também a imagem para o article (combinando com a imagem do café)
     const {loading, data} = this.props;
-    console.log(this.props);
+
     return (
       <SafeAreaView style={styles.container}>
         {loading && this.renderLoading()}

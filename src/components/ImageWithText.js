@@ -5,7 +5,7 @@ import {timeStampToString} from '../utils/general';
 export default class ImageWithText extends React.Component {
   render() {
     const {date, description, uri} = this.props.item;
-    console.log(uri);
+
     return (
       <View style={styles.container}>
         <Image resizeMode="cover" style={styles.image} source={{uri: uri}} />

@@ -9,7 +9,7 @@ export default class ImagesBackend {
         .orderBy('date')
         .onSnapshot(callback);
     } catch (e) {
-      console.log('getAllImagesSnap error: ', e);
+      console.error('getAllImagesSnap error: ', e);
     }
   }
 }
