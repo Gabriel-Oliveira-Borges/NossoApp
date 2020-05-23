@@ -6,6 +6,7 @@ import FirstUseItem from '../../components/FirstUseItem';
 import {connect} from 'react-redux';
 import {AddToRedux} from '../../utils/data/AddToRedux';
 import LoadingComponent from '../../components/LoadingComponent';
+import BackgroundComponent from '../../components/BackgroundComponent';
 
 class StartScreen extends React.Component {
   constructor(props) {
@@ -48,22 +49,24 @@ class StartScreen extends React.Component {
     const {data} = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <Carousel
-          ref={(c) => {
-            this._carousel = c;
-          }}
-          data={data}
-          sliderWidth={Math.round(Dimensions.get('window').width)}
-          itemWidth={Math.round(Dimensions.get('window').width)}
-          onSnapToItem={(index) => this.setState({activeSlideIndex: index})}
-          renderItem={(currentItem) => (
-            <FirstUseItem
-              currentItem={currentItem}
-              isLastItem={currentItem.index === data.length - 1}
-            />
-          )}
-        />
-        {this.renderPagination()}
+        <BackgroundComponent>
+          <Carousel
+            ref={(c) => {
+              this._carousel = c;
+            }}
+            data={data}
+            sliderWidth={Math.round(Dimensions.get('window').width)}
+            itemWidth={Math.round(Dimensions.get('window').width)}
+            onSnapToItem={(index) => this.setState({activeSlideIndex: index})}
+            renderItem={(currentItem) => (
+              <FirstUseItem
+                currentItem={currentItem}
+                isLastItem={currentItem.index === data.length - 1}
+              />
+            )}
+          />
+          {this.renderPagination()}
+        </BackgroundComponent>
       </SafeAreaView>
     );
   };
@@ -78,7 +81,6 @@ class StartScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
   },
 });
 

@@ -5,6 +5,7 @@ import {AddToRedux} from '../../utils/data/AddToRedux';
 import ImageWithText from '../../components/ImageWithText';
 import {ScrollView} from 'react-native-gesture-handler';
 import LoadingComponent from '../../components/LoadingComponent';
+import BackgroundComponent from '../../components/BackgroundComponent';
 
 class MediaScreen extends React.Component {
   constructor(props) {
@@ -46,22 +47,20 @@ class MediaScreen extends React.Component {
     // e também a imagem para o article (combinando com a imagem do café)
     const {loading, data} = this.props;
 
+    if (loading) return this.renderLoading();
+
     return (
       <SafeAreaView style={styles.container}>
-        {loading && this.renderLoading()}
-        {!loading && !data && this.renderNoData()}
-        {!loading && data && this.renderMedias()}
+        <BackgroundComponent>
+          {!data ? this.renderNoData() : this.renderMedias()}
+        </BackgroundComponent>
       </SafeAreaView>
     );
   }
 }
 
-// #15002B
-// #6D24AA
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#EEEEEE',
     flex: 1,
   },
   messageView: {
