@@ -6,6 +6,15 @@ import {Provider} from 'react-redux';
 import {store} from './src/redux/index';
 import {NavigationContainer} from '@react-navigation/native';
 import 'react-native-gesture-handler';
+import base64 from 'react-native-base64';
+
+if (!global.btoa) {
+  global.btoa = base64.encode;
+}
+
+if (!global.atob) {
+  global.atob = base64.decode;
+}
 
 class AppClass extends React.Component {
   render() {
