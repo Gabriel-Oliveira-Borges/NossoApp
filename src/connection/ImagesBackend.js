@@ -12,4 +12,13 @@ export default class ImagesBackend {
       console.error('getAllImagesSnap error: ', e);
     }
   }
+
+  static async uploadMedias(medias) {
+    try {
+      const result = await firebase.storage().ref().putMedias(medias);
+      console.log(result);
+    } catch (e) {
+      console.error('uploadMedias error: ', e);
+    }
+  }
 }

@@ -7,20 +7,26 @@ import {ScrollView} from 'react-native-gesture-handler';
 import LoadingComponent from '../../components/LoadingComponent';
 import BackgroundComponent from '../../components/BackgroundComponent';
 import FloatingButton from '../../components/FloatingButton';
+import ImagePickerHandler from '../../utils/medias/ImagePickerHandler';
 
 class MediaScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.renderMedias = this.renderMedias.bind(this);
+    this.handleOnAddMediaClick = this.handleOnAddMediaClick.bind(this);
   }
 
   componentWillMount() {
     AddToRedux.getAllMedias();
   }
 
-  handleOnAddMediaClick() {
-    console.log('aqu');
+  async handleOnAddMediaClick() {
+    const result = await ImagePickerHandler.mediaPicker();
+    if (result?.length > 0) {
+      console.log(result);
+      this.props.navigation.navigate('AddMedias', {medias: result});
+    }
   }
 
   renderLoading = () => <LoadingComponent />;
@@ -46,10 +52,6 @@ class MediaScreen extends React.Component {
   };
 
   render() {
-    // ver esses estilos:
-    // A imagem do café é interessante (em HOME) https://demos.creative-tim.com/material-kit-react-native/index.html#cards
-    // Eu posso pegar esse estilo do Elements https://demos.creative-tim.com/argon-react-native/?_ga=2.115459524.334557525.1589952715-1038485479.1587607471
-    // e também a imagem para o article (combinando com a imagem do café)
     const {loading, data} = this.props;
 
     if (loading) return this.renderLoading();

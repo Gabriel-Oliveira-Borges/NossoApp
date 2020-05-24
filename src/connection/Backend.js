@@ -9,4 +9,8 @@ export default class Backend {
   static getFirstUseData(callback) {
     FirstUseBackend.getFirstUseData(callback);
   }
+
+  static uploadMedias(medias) {
+    ImagesBackend.uploadMedias(medias);
+  }
 }

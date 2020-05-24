@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 export default class FloatingButton extends React.Component {
   render() {
     const {onPress} = this.props;
-    console.log(onPress);
+
     return (
       <View style={styles.button}>
         <TouchableOpacity style={styles.touchable} onPress={onPress}>
