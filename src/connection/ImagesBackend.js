@@ -1,4 +1,42 @@
 import firebase from '../config/firebase';
+import {pathToBlob, setMediasScreenLoading} from '../utils/general';
+
+firebase.storage().ref().constructor.prototype.putMediasInStorage = (
+  medias,
+) => {
+  return Promise.all(
+    medias.map(async (media) => {
+      const fileName = media.modificationDate + '.' + media.mime.split('/')[1];
+      const blob = await pathToBlob(media.path);
+      return firebase
+        .storage()
+        .ref()
+        .child(fileName)
+        .put(blob, {contentType: media.mime});
+    }),
+  );
+};
+
+firebase.firestore().constructor.prototype.putMediasInFirestore = (
+  medias,
+  storageResult,
+) => {
+  return Promise.all(
+    medias.map(async (media, i) => {
+      const isVideo = media.mime.indexOf('video') !== -1;
+      const description = media.description;
+      const date = media.date;
+      const downloadUrl = await storageResult[i].ref.getDownloadURL();
+
+      return firebase.firestore().collection('medias').add({
+        isVideo: isVideo,
+        description: description,
+        date: date,
+        uri: downloadUrl,
+      });
+    }),
+  );
+};
 
 export default class ImagesBackend {
   static getAllMediasSnap(callback) {
@@ -15,9 +53,12 @@ export default class ImagesBackend {
 
   static async uploadMedias(medias) {
     try {
-      const result = await firebase.storage().ref().putMedias(medias);
-      console.log(result);
+      setMediasScreenLoading(true);
+      const result = await firebase.storage().ref().putMediasInStorage(medias);
+      await firebase.firestore().putMediasInFirestore(medias, result);
+      setMediasScreenLoading(false);
     } catch (e) {
+      setMediasScreenLoading(false);
       console.error('uploadMedias error: ', e);
     }
   }

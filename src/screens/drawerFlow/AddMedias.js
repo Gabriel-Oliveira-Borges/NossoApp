@@ -16,7 +16,10 @@ class AddMedias extends React.Component {
 
   handleImagesUpload() {
     const {medias} = this.props.route.params;
+    medias[0].date = new Date();
+    medias[0].description = 'Descrição aqui';
     Backend.uploadMedias(medias);
+    this.props.navigation.goBack();
   }
 
   render() {

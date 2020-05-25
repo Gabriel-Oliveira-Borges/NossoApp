@@ -1,4 +1,6 @@
 import moment from 'moment';
+import {store} from '../redux/index';
+import {setLoading} from '../redux/actions/mediaActions';
 
 export function timeStampToString(date, format) {
   return moment(date.seconds * 1000).format(format);
@@ -22,4 +24,8 @@ export function pathToBlob(path) {
 
     xhr.send(null);
   });
+}
+
+export function setMediasScreenLoading(value) {
+  store.dispatch(setLoading(value));
 }
