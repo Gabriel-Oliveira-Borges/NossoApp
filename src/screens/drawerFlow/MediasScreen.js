@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import {AddToRedux} from '../../utils/data/AddToRedux';
-import ImageWithText from '../../components/ImageWithText';
+import MediaWithText from '../../components/MediaWithText';
 import {ScrollView} from 'react-native-gesture-handler';
 import LoadingComponent from '../../components/LoadingComponent';
 import BackgroundComponent from '../../components/BackgroundComponent';
@@ -43,7 +43,7 @@ class MediaScreen extends React.Component {
       <ScrollView style={styles.container}>
         {data.map((item, i) => (
           <View key={i} style={{padding: 20}}>
-            <ImageWithText item={item} />
+            <MediaWithText item={item} />
           </View>
         ))}
       </ScrollView>
