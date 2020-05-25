@@ -21,6 +21,7 @@ export default class ImagePickerHandler {
       width: 300,
       height: 400,
       mediaType: 'image',
+      useFrontCamera: true,
     };
     try {
       const result = await ImagePicker.openCamera(settings);

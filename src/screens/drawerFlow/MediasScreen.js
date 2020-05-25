@@ -24,7 +24,6 @@ class MediaScreen extends React.Component {
   async handleOnAddMediaClick() {
     const result = await ImagePickerHandler.mediaPicker();
     if (result?.length > 0) {
-      console.log(result);
       this.props.navigation.navigate('AddMedias', {medias: result});
     }
   }
@@ -33,8 +32,8 @@ class MediaScreen extends React.Component {
 
   renderNoData = () => (
     <View style={styles.messageView}>
-      <Text>Eita bebê, não tem nenhuma foto aqui</Text>
-      <Text>Vamos adicionar algumas ?</Text>
+      <Text style={{color: 'white'}}>Eita bebê, não tem nenhuma foto aqui</Text>
+      <Text style={{color: 'white'}}>Vamos adicionar algumas ?</Text>
     </View>
   );
 

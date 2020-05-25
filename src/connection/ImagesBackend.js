@@ -23,17 +23,16 @@ firebase.firestore().constructor.prototype.putMediasInFirestore = (
 ) => {
   return Promise.all(
     medias.map(async (media, i) => {
-      const isVideo = media.mime.indexOf('video') !== -1;
-      const description = media.description;
-      const date = media.date;
       const downloadUrl = await storageResult[i].ref.getDownloadURL();
-
-      return firebase.firestore().collection('medias').add({
-        isVideo: isVideo,
-        description: description,
-        date: date,
-        uri: downloadUrl,
-      });
+      return firebase
+        .firestore()
+        .collection('medias')
+        .add({
+          isVideo: media.isVideo,
+          description: media.description,
+          date: firebase.firestore.Timestamp.fromDate(new Date(media.date)),
+          uri: downloadUrl,
+        });
     }),
   );
 };
