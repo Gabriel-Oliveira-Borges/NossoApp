@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {timeStampToString} from '../utils/general';
 import Video from 'react-native-video';
 import backgroundVideoImage from '../assets/images/playVideoButton.png';
+import playIcon from '../assets/images/play.png';
+import pauseIcon from '../assets/images/pause.png';
 
 export default class MediaWithText extends React.Component {
   constructor(props) {
@@ -11,21 +13,35 @@ export default class MediaWithText extends React.Component {
     this.state = {
       isVideoPaused: true,
       shouldShowVideoImage: true,
+      shouldShowVideoStatusIcon: false,
     };
 
     this.renderImage = this.renderImage.bind(this);
     this.renderVideo = this.renderVideo.bind(this);
   }
+
   renderVideo() {
     const {uri} = this.props.item;
-    const {isVideoPaused, shouldShowVideoImage} = this.state;
+    const {
+      isVideoPaused,
+      shouldShowVideoImage,
+      shouldShowVideoStatusIcon,
+    } = this.state;
     return (
       <TouchableOpacity
         onPress={() =>
-          this.setState({
-            isVideoPaused: !isVideoPaused,
-            shouldShowVideoImage: false,
-          })
+          this.setState(
+            {
+              isVideoPaused: !isVideoPaused,
+              shouldShowVideoImage: false,
+              shouldShowVideoStatusIcon: true,
+            },
+            () =>
+              setTimeout(
+                () => this.setState({shouldShowVideoStatusIcon: false}),
+                2000,
+              ),
+          )
         }>
         {shouldShowVideoImage ? (
           <Image
@@ -34,25 +50,40 @@ export default class MediaWithText extends React.Component {
             source={backgroundVideoImage}
           />
         ) : (
-          <Video
-            ref={(ref) => {
-              this.player = ref;
-            }}
-            style={styles.media}
-            source={{uri: uri}}
-            paused={isVideoPaused}
-            controls={true}
-            bufferConfig={{
-              maxBufferMs: 2500,
-              bufferForPlaybackMs: 2500,
-              bufferForPlaybackAfterRebufferMs: 5000,
-            }}
-            resizeMode="contain"
-          />
+          <View>
+            <Video
+              ref={(ref) => {
+                this.player = ref;
+              }}
+              style={styles.media}
+              source={{uri: uri}}
+              paused={isVideoPaused}
+              controls={false}
+              bufferConfig={{
+                maxBufferMs: 2500,
+                bufferForPlaybackMs: 2500,
+                bufferForPlaybackAfterRebufferMs: 5000,
+              }}
+              resizeMode="contain"
+            />
+            {shouldShowVideoStatusIcon && (
+              <Image
+                source={isVideoPaused ? pauseIcon : playIcon}
+                style={{
+                  height: 25,
+                  width: 25,
+                  position: 'absolute',
+                  top: 20,
+                  left: 20,
+                }}
+              />
+            )}
+          </View>
         )}
       </TouchableOpacity>
     );
   }
+
   renderImage() {
     const {uri} = this.props.item;
     return (
