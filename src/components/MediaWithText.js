@@ -6,6 +6,7 @@ import backgroundVideoImage from '../assets/images/playVideoButton.png';
 import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
 import DialogAndroid from 'react-native-dialogs';
+import Backend from '../connection/Backend';
 
 export default class MediaWithText extends React.Component {
   constructor(props) {
@@ -20,13 +21,34 @@ export default class MediaWithText extends React.Component {
     this.renderImage = this.renderImage.bind(this);
     this.renderVideo = this.renderVideo.bind(this);
     this.showMediaOptions = this.showMediaOptions.bind(this);
+    this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
+    this.handleEditMedia = this.handleEditMedia.bind(this);
+    this.handleShareMedia = this.handleShareMedia.bind(this);
   }
 
   handleShareMedia() {}
 
   handleEditMedia() {}
 
-  handleDeleteMedia() {}
+  async handleDeleteMedia() {
+    const {media} = this.props;
+    let messageTitle;
+    if (media.isVideo) {
+      messageTitle = 'Deletar vídeo ?';
+    } else {
+      messageTitle = 'Deletar imagem ?';
+    }
+
+    DialogAndroid.assignDefaults({
+      positiveText: 'Deletar',
+      negativeText: 'Cancelar',
+    });
+    const {action} = await DialogAndroid.showPicker(messageTitle, null, {});
+
+    if (action === 'actionPositive') {
+      Backend.deleteMedia(media);
+    }
+  }
 
   async showMediaOptions() {
     DialogAndroid.assignDefaults({
@@ -54,14 +76,14 @@ export default class MediaWithText extends React.Component {
   }
 
   renderImage() {
-    const {uri} = this.props.item;
+    const {uri} = this.props.media;
     return (
-      <Image resizeMode="contain" style={styles.media} source={{uri: uri}} />
+      <Image resizeMode="cover" style={styles.media} source={{uri: uri}} />
     );
   }
 
   renderVideo() {
-    const {uri} = this.props.item;
+    const {uri} = this.props.media;
     const {
       isVideoPaused,
       shouldShowVideoImage,
@@ -126,7 +148,7 @@ export default class MediaWithText extends React.Component {
   }
 
   render() {
-    const {date, description, isVideo} = this.props.item;
+    const {date, description, isVideo} = this.props.media;
 
     return (
       <TouchableOpacity

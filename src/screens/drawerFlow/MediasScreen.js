@@ -41,9 +41,9 @@ class MediaScreen extends React.Component {
     const {data} = this.props;
     return (
       <ScrollView style={styles.container}>
-        {data.map((item, i) => (
+        {data.map((media, i) => (
           <View key={i} style={{padding: 20}}>
-            <MediaWithText item={item} />
+            <MediaWithText media={media} />
           </View>
         ))}
       </ScrollView>

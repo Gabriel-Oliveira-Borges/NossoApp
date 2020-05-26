@@ -7,7 +7,11 @@ export default class FirebaseToReduxMapper {
       store.dispatch(updateMedias(undefined));
     } else {
       const medias = [];
-      response.docs.forEach((doc) => medias.push(doc.data()));
+      response.docs.forEach((doc) => {
+        const media = doc.data();
+        media.id = doc.ref.id;
+        medias.push(media);
+      });
 
       store.dispatch(updateMedias(medias));
     }

@@ -13,4 +13,8 @@ export default class Backend {
   static uploadMedias(medias) {
     ImagesBackend.uploadMedias(medias);
   }
+
+  static deleteMedia(media) {
+    ImagesBackend.deleteMedia(media);
+  }
 }
