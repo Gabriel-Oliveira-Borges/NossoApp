@@ -1,12 +1,35 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Button, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import moment from 'moment';
 import Video from 'react-native-video';
 import LoadingScreen from './LoadingComponent';
+import playIcon from '../assets/images/play.png';
+import pauseIcon from '../assets/images/pause.png';
 
 export default class AddMediaItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isVideoPaused: false,
+      shouldShowVideoStatusIcon: true,
+    };
+
+    setTimeout(() => this.setState({shouldShowVideoStatusIcon: false}), 2000);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.media?.isVideo && this.state.isVideoPaused) {
+      this.setState({isVideoPaused: false, shouldShowVideoStatusIcon: true});
+    }
   }
 
   renderLastItem() {
@@ -28,19 +51,52 @@ export default class AddMediaItem extends React.Component {
 
   renderVideo() {
     const {path} = this.props.media;
+    const {isVideoPaused, shouldShowVideoStatusIcon} = this.state;
     return (
-      <Video
-        ref={(ref) => {
-          this.player = ref;
-        }}
+      <TouchableOpacity
         style={styles.itemMedia}
-        source={{uri: path}}
-        controls={true}
-        disableFocus={true}
-        poster={path}
-        resizeMode="contain"
-        fullscreen
-      />
+        onPress={() =>
+          this.setState(
+            {
+              isVideoPaused: !isVideoPaused,
+              shouldShowVideoStatusIcon: true,
+            },
+            () =>
+              setTimeout(
+                () => this.setState({shouldShowVideoStatusIcon: false}),
+                2000,
+              ),
+          )
+        }>
+        <Video
+          style={{width: '100%', height: '100%'}}
+          ref={(ref) => {
+            this.player = ref;
+          }}
+          source={{uri: path}}
+          paused={isVideoPaused}
+          controls={false}
+          bufferConfig={{
+            maxBufferMs: 2500,
+            bufferForPlaybackMs: 2500,
+            bufferForPlaybackAfterRebufferMs: 5000,
+          }}
+          resizeMode="contain"
+          disableFocus={true}
+        />
+        {shouldShowVideoStatusIcon && (
+          <Image
+            source={isVideoPaused ? pauseIcon : playIcon}
+            style={{
+              height: 25,
+              width: 25,
+              position: 'absolute',
+              top: 20,
+              left: 20,
+            }}
+          />
+        )}
+      </TouchableOpacity>
     );
   }
 
@@ -60,7 +116,9 @@ export default class AddMediaItem extends React.Component {
         <View style={styles.textContainer}>
           <View style={styles.textBlockView}>
             <Text>Data: </Text>
-            <Text>{moment(date).format('DD/MM/YYYY')}</Text>
+            <Text style={{textDecorationLine: 'underline'}}>
+              {moment(date).format('DD/MM/YYYY')}
+            </Text>
           </View>
           <View style={{...styles.textBlockView, flexDirection: 'column'}}>
             <TextInput

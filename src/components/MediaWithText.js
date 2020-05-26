@@ -24,7 +24,10 @@ export default class MediaWithText extends React.Component {
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
     this.handleEditMedia = this.handleEditMedia.bind(this);
     this.handleShareMedia = this.handleShareMedia.bind(this);
+    this.handleSeeMediaDetails = this.handleSeeMediaDetails.bind(this);
   }
+
+  handleSeeMediaDetails() {}
 
   handleShareMedia() {}
 
@@ -51,6 +54,7 @@ export default class MediaWithText extends React.Component {
   }
 
   async showMediaOptions() {
+    const {isVideo} = this.props.media;
     DialogAndroid.assignDefaults({
       positiveText: '',
       negativeText: 'Cancelar',
@@ -60,13 +64,16 @@ export default class MediaWithText extends React.Component {
       null,
       {
         items: [
+          {label: isVideo ? 'Ver video' : 'Ver imagem', id: 'details'},
           {label: 'Compartilhar', id: 'share'},
           {label: 'Editar', id: 'edit'},
           {label: 'Excluir', id: 'delete'},
         ],
       },
     );
-    if (selectedItem?.id === 'share') {
+
+    if (selectedItem?.id === 'details') {
+    } else if (selectedItem?.id === 'share') {
       this.handleShareMedia();
     } else if (selectedItem?.id === 'edit') {
       this.handleEditMedia();
@@ -128,6 +135,7 @@ export default class MediaWithText extends React.Component {
                 bufferForPlaybackAfterRebufferMs: 5000,
               }}
               resizeMode="contain"
+              disableFocus={true}
             />
             {shouldShowVideoStatusIcon && (
               <Image
