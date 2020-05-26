@@ -5,6 +5,7 @@ import Video from 'react-native-video';
 import backgroundVideoImage from '../assets/images/playVideoButton.png';
 import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
+import DialogAndroid from 'react-native-dialogs';
 
 export default class MediaWithText extends React.Component {
   constructor(props) {
@@ -18,6 +19,45 @@ export default class MediaWithText extends React.Component {
 
     this.renderImage = this.renderImage.bind(this);
     this.renderVideo = this.renderVideo.bind(this);
+    this.showMediaOptions = this.showMediaOptions.bind(this);
+  }
+
+  handleShareMedia() {}
+
+  handleEditMedia() {}
+
+  handleDeleteMedia() {}
+
+  async showMediaOptions() {
+    DialogAndroid.assignDefaults({
+      positiveText: '',
+      negativeText: 'Cancelar',
+    });
+    const {selectedItem} = await DialogAndroid.showPicker(
+      'Selecione uma opção',
+      null,
+      {
+        items: [
+          {label: 'Compartilhar', id: 'share'},
+          {label: 'Editar', id: 'edit'},
+          {label: 'Excluir', id: 'delete'},
+        ],
+      },
+    );
+    if (selectedItem?.id === 'share') {
+      this.handleShareMedia();
+    } else if (selectedItem?.id === 'edit') {
+      this.handleEditMedia();
+    } else if (selectedItem?.id === 'delete') {
+      this.handleDeleteMedia();
+    }
+  }
+
+  renderImage() {
+    const {uri} = this.props.item;
+    return (
+      <Image resizeMode="contain" style={styles.media} source={{uri: uri}} />
+    );
   }
 
   renderVideo() {
@@ -42,7 +82,8 @@ export default class MediaWithText extends React.Component {
                 2000,
               ),
           )
-        }>
+        }
+        onLongPress={this.showMediaOptions}>
         {shouldShowVideoImage ? (
           <Image
             resizeMode="center"
@@ -84,18 +125,14 @@ export default class MediaWithText extends React.Component {
     );
   }
 
-  renderImage() {
-    const {uri} = this.props.item;
-    return (
-      <Image resizeMode="contain" style={styles.media} source={{uri: uri}} />
-    );
-  }
-
   render() {
-    const {date, description, uri, isVideo} = this.props.item;
+    const {date, description, isVideo} = this.props.item;
 
     return (
-      <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onLongPress={this.showMediaOptions}
+        delayLongPress={50}>
         {isVideo ? this.renderVideo() : this.renderImage()}
         <View style={styles.textsView}>
           {date && (
@@ -105,7 +142,7 @@ export default class MediaWithText extends React.Component {
           )}
           {!!description && <Text>{description}</Text>}
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
