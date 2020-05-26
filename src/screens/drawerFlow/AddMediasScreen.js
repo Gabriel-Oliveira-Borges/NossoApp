@@ -9,26 +9,38 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import BackgroundComponent from '../../components/BackgroundComponent';
 import AddMediaItem from '../../components/AddMediaItem';
 
-class AddMedias extends React.Component {
+class AddMediasScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       medias: undefined,
       activeSlideIndex: 0,
       loading: true,
+      loadingItem: false,
     };
 
-    this.handleImagesUpload = this.handleImagesUpload.bind(this);
+    this.handleMediasUpload = this.handleMediasUpload.bind(this);
     this.prepareInicialState = this.prepareInicialState.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
   }
 
   componentWillMount() {
     this.prepareInicialState();
   }
 
-  handleImagesUpload() {
+  onChangeDescription(text) {
+    const {activeSlideIndex, medias} = this.state;
+    const currentMedia = medias[activeSlideIndex];
+    currentMedia.description = text;
+    medias[activeSlideIndex] = currentMedia;
+
+    this.setState({medias: medias});
+  }
+
+  handleMediasUpload() {
     const {medias} = this.state;
     medias.pop(); // remove a última tela que é a de upload
+
     Backend.uploadMedias(medias);
     this.props.navigation.goBack();
   }
@@ -68,25 +80,34 @@ class AddMedias extends React.Component {
   };
 
   render() {
-    const {medias, loading, activeSlideIndex} = this.state;
+    const {medias, loading, activeSlideIndex, loadingItem} = this.state;
     if (loading) return <LoadingScreen />;
-    console.log(medias);
+
     return (
       <SafeAreaView style={styles.container}>
         <BackgroundComponent>
           <Carousel
+            shouldOptimizeUpdates
             ref={(c) => {
               this._carousel = c;
             }}
             data={medias}
             sliderWidth={Math.round(Dimensions.get('window').width)}
             itemWidth={Math.round(Dimensions.get('window').width)}
-            onSnapToItem={(index) => this.setState({activeSlideIndex: index})}
+            onSnapToItem={(index) =>
+              this.setState({
+                activeSlideIndex: index,
+                loadingItem: false,
+              })
+            }
+            onBeforeSnapToItem={() => this.setState({loadingItem: true})}
             renderItem={(currentMedia) => (
               <AddMediaItem
+                loading={loadingItem}
                 media={medias[activeSlideIndex]}
                 isLastItem={currentMedia.index === medias.length - 1}
-                handleImagesUpload={this.handleImagesUpload}
+                handleMediasUpload={this.handleMediasUpload}
+                onChangeDescription={this.onChangeDescription}
               />
             )}
           />
@@ -107,4 +128,4 @@ const mapStateToProps = (state) => ({
   teste: state.medias.loading,
 });
 
-export default connect(mapStateToProps)(AddMedias);
+export default connect(mapStateToProps)(AddMediasScreen);

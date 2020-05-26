@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import {View, Text, StyleSheet, Image, Button, TextInput} from 'react-native';
 import moment from 'moment';
 import Video from 'react-native-video';
+import LoadingScreen from './LoadingComponent';
 
 export default class AddMediaItem extends React.Component {
   constructor(props) {
@@ -9,11 +10,11 @@ export default class AddMediaItem extends React.Component {
   }
 
   renderLastItem() {
-    const {handleImagesUpload} = this.props;
+    const {handleMediasUpload} = this.props;
     return (
       <View style={styles.itemContainer}>
         <Text>Último item</Text>
-        <Button title="fazer upload" onPress={handleImagesUpload} />
+        <Button title="fazer upload" onPress={handleMediasUpload} />
       </View>
     );
   }
@@ -43,26 +44,54 @@ export default class AddMediaItem extends React.Component {
     );
   }
 
+  renderLoading = () => <LoadingScreen />;
+
   render() {
-    const {isLastItem, media} = this.props;
+    const {isLastItem, media, onChangeDescription, loading} = this.props;
+
+    if (loading) return this.renderLoading();
 
     if (isLastItem || !media) return this.renderLastItem();
 
-    const {description, date, path, isVideo} = media;
+    const {description, date, isVideo} = media;
     return (
       <View style={styles.itemContainer}>
         {isVideo ? this.renderVideo() : this.renderImage()}
-        <Text>Botar a opção para vídeo também</Text>
-        <Text>{description}</Text>
-        <Text>{moment(date).format('DD/MM/YYYY')}</Text>
-        <Text>{path}</Text>
-        {isLastItem && <Text>último</Text>}
+        <View style={styles.textContainer}>
+          <View style={styles.textBlockView}>
+            <Text>Data: </Text>
+            <Text>{moment(date).format('DD/MM/YYYY')}</Text>
+          </View>
+          <View style={{...styles.textBlockView, flexDirection: 'column'}}>
+            <TextInput
+              value={description}
+              onChangeText={onChangeDescription}
+              style={styles.inputStyle}
+              multiline
+              placeholder="Descrição"
+            />
+          </View>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  textBlockView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignSelf: 'stretch',
+    padding: 5,
+  },
+  inputStyle: {
+    minHeight: 45,
+    borderStyle: 'solid',
+    borderColor: 'black',
+    borderRadius: 10,
+    borderWidth: 1,
+    width: '100%',
+  },
   itemContainer: {
     margin: 40,
     marginBottom: 0,
@@ -74,7 +103,7 @@ const styles = StyleSheet.create({
   },
   itemMedia: {
     borderRadius: 25,
-    width: '100%',
+    alignSelf: 'stretch',
     flex: 1,
   },
   itemText: {
@@ -85,5 +114,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.65)',
     color: 'white',
     borderRadius: 25,
+  },
+  textContainer: {
+    alignSelf: 'stretch',
+    padding: 10,
+    justifyContent: 'flex-start',
   },
 });

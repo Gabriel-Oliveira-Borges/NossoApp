@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import MediaScreen from '../../screens/drawerFlow/MediasScreen';
 import DrawerScreenHeaderOptions from '../../components/DrawerScreenHeaderOptions';
-import AddMedias from '../../screens/drawerFlow/AddMedias';
+import AddMediasScreen from '../../screens/drawerFlow/AddMediasScreen';
 
 const Stack = createStackNavigator();
 function MediasStack(props) {
@@ -17,8 +17,8 @@ function MediasStack(props) {
         }}
       />
       <Stack.Screen
-        name="AddMedias"
-        component={AddMedias}
+        name="AddMediasScreen"
+        component={AddMediasScreen}
         options={{
           ...DrawerScreenHeaderOptions(props),
           title: 'Mudar aqui também (colocar pra voltar)',

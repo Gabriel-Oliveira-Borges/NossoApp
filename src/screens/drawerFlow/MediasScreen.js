@@ -24,7 +24,7 @@ class MediaScreen extends React.Component {
   async handleOnAddMediaClick() {
     const result = await ImagePickerHandler.mediaPicker();
     if (result?.length > 0) {
-      this.props.navigation.navigate('AddMedias', {medias: result});
+      this.props.navigation.navigate('AddMediasScreen', {medias: result});
     }
   }
 
