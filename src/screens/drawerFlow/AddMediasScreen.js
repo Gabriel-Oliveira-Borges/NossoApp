@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Backend from '../../connection/Backend';
-import moment from 'moment';
 import LoadingScreen from '../../components/LoadingComponent';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BackgroundComponent from '../../components/BackgroundComponent';
 import AddMediaItem from '../../components/AddMediaItem';
+import {filePathToDate} from '../../utils/general';
 
 class AddMediasScreen extends React.Component {
   constructor(props) {
@@ -29,8 +29,13 @@ class AddMediasScreen extends React.Component {
     this.prepareInicialState();
   }
 
-  onChangeDate(date) {
-    console.log(date);
+  onChangeDate(selectedDate) {
+    const {activeSlideIndex, medias} = this.state;
+    const currentMedia = medias[activeSlideIndex];
+    currentMedia.date = selectedDate;
+    medias[activeSlideIndex] = currentMedia;
+
+    this.setState({medias: medias});
   }
 
   onChangeDescription(text) {
@@ -54,7 +59,7 @@ class AddMediasScreen extends React.Component {
     const {medias} = this.props.route.params;
     const newMedias = medias.map((media) => ({
       description: '',
-      date: moment(parseInt(media.modificationDate)),
+      date: filePathToDate(media.path),
       isVideo: media.mime.indexOf('video') !== -1,
       ...media,
     }));

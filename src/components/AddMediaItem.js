@@ -14,6 +14,7 @@ import Video from 'react-native-video';
 import LoadingScreen from './LoadingComponent';
 import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
+import CalendarPicker from './ CalendarPicker';
 
 export default class AddMediaItem extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class AddMediaItem extends React.Component {
     this.state = {
       isVideoPaused: false,
       shouldShowVideoStatusIcon: true,
-      shouldShowModal: true,
+      shouldShowModal: false,
     };
 
     setTimeout(() => this.setState({shouldShowVideoStatusIcon: false}), 2000);
@@ -136,9 +137,16 @@ export default class AddMediaItem extends React.Component {
         transparent={true}
         onRequestClose={() => this.setState({shouldShowModal: false})}>
         <View style={styles.modalView}>
-          <Text onPress={() => this.setState({shouldShowModal: false})}>
-            {moment(date).format('DD/MM/YYYY')}
-          </Text>
+          <Text>Selecione o dia</Text>
+          <CalendarPicker
+            selectedDate={date}
+            onDayPress={(selectedDate) => {
+              this.setState({shouldShowModal: false});
+              this.props.onChangeDate(selectedDate);
+            }}
+            height={325}
+            width={325}
+          />
         </View>
       </Modal>
     );
@@ -209,7 +217,7 @@ const styles = StyleSheet.create({
     height: 350,
     borderRadius: 25,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     elevation: 5,
     shadowOpacity: 0.25,
     shadowRadius: 3.84,

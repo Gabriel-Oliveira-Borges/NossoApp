@@ -4,6 +4,8 @@ Mídias:
     Só será possível editar a data e a descrição
   Ver mídia com mais detalhes
   Compartilhar mídia
+  Adicionar media da camera
+  Adicionar media por link
 
 DRAWER:
   Mudar header da tela de Mídias

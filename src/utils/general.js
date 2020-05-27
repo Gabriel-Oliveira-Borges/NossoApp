@@ -41,3 +41,17 @@ export function create_UUID() {
   });
   return uuid;
 }
+
+export function filePathToDate(filePath) {
+  const regex = /(IMG|VID)_\d{8}/g;
+
+  const result = regex.exec(filePath);
+
+  if (!result) return moment();
+
+  const dateString = result[0]?.replace(/(VID|IMG)_/g, '');
+
+  if (!dateString || dateString.length < 8) return moment();
+
+  return moment(dateString, 'YYYYMMDD');
+}
