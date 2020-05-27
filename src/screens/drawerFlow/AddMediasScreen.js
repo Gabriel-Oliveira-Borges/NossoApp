@@ -22,10 +22,15 @@ class AddMediasScreen extends React.Component {
     this.handleMediasUpload = this.handleMediasUpload.bind(this);
     this.prepareInicialState = this.prepareInicialState.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
   }
 
   componentWillMount() {
     this.prepareInicialState();
+  }
+
+  onChangeDate(date) {
+    console.log(date);
   }
 
   onChangeDescription(text) {
@@ -108,6 +113,7 @@ class AddMediasScreen extends React.Component {
                 isLastItem={currentMedia.index === medias.length - 1}
                 handleMediasUpload={this.handleMediasUpload}
                 onChangeDescription={this.onChangeDescription}
+                onChangeDate={this.onChangeDate}
               />
             )}
           />

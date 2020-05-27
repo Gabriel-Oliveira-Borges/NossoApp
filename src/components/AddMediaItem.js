@@ -7,6 +7,7 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import moment from 'moment';
 import Video from 'react-native-video';
@@ -21,15 +22,31 @@ export default class AddMediaItem extends React.Component {
     this.state = {
       isVideoPaused: false,
       shouldShowVideoStatusIcon: true,
+      shouldShowModal: true,
     };
 
     setTimeout(() => this.setState({shouldShowVideoStatusIcon: false}), 2000);
+    this.setShouldShowVideoStatusIcon = this.setShouldShowVideoStatusIcon.bind(
+      this,
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.media?.isVideo && this.state.isVideoPaused) {
-      this.setState({isVideoPaused: false, shouldShowVideoStatusIcon: true});
+      this.setState({
+        isVideoPaused: false,
+        shouldShowVideoStatusIcon: true,
+      });
     }
+  }
+
+  setShouldShowVideoStatusIcon(newValue) {
+    this.setState({shouldShowVideoStatusIcon: newValue}, () =>
+      setTimeout(
+        () => this.setState({shouldShowVideoStatusIcon: !newValue}),
+        2000,
+      ),
+    );
   }
 
   renderLastItem() {
@@ -44,32 +61,39 @@ export default class AddMediaItem extends React.Component {
 
   renderImage() {
     const {path} = this.props.media;
+    const {shouldShowModal} = this.state;
     return (
-      <Image resizeMode="cover" style={styles.itemMedia} source={{uri: path}} />
+      <Image
+        resizeMode="cover"
+        style={
+          shouldShowModal ? styles.itemMediaWithModalOpen : styles.itemMedia
+        }
+        source={{uri: path}}
+      />
     );
   }
 
   renderVideo() {
     const {path} = this.props.media;
-    const {isVideoPaused, shouldShowVideoStatusIcon} = this.state;
+    const {
+      isVideoPaused,
+      shouldShowVideoStatusIcon,
+      shouldShowModal,
+    } = this.state;
     return (
       <TouchableOpacity
-        style={styles.itemMedia}
-        onPress={() =>
-          this.setState(
-            {
-              isVideoPaused: !isVideoPaused,
-              shouldShowVideoStatusIcon: true,
-            },
-            () =>
-              setTimeout(
-                () => this.setState({shouldShowVideoStatusIcon: false}),
-                2000,
-              ),
-          )
-        }>
+        style={
+          shouldShowModal ? styles.itemMediaWithModalOpen : styles.itemMedia
+        }
+        onPress={() => {
+          this.setState({
+            isVideoPaused: !isVideoPaused,
+            shouldShowVideoStatusIcon: true,
+          });
+          this.setShouldShowVideoStatusIcon(true);
+        }}>
         <Video
-          style={{width: '100%', height: '100%'}}
+          style={shouldShowModal ? styles.videoWithModal : styles.video}
           ref={(ref) => {
             this.player = ref;
           }}
@@ -102,25 +126,61 @@ export default class AddMediaItem extends React.Component {
 
   renderLoading = () => <LoadingScreen />;
 
+  renderModal = () => {
+    const {date} = this.props.media;
+    const {shouldShowModal} = this.state;
+    return (
+      <Modal
+        visible={shouldShowModal}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => this.setState({shouldShowModal: false})}>
+        <View style={styles.modalView}>
+          <Text onPress={() => this.setState({shouldShowModal: false})}>
+            {moment(date).format('DD/MM/YYYY')}
+          </Text>
+        </View>
+      </Modal>
+    );
+  };
+
   render() {
     const {isLastItem, media, onChangeDescription, loading} = this.props;
-
+    const {shouldShowModal} = this.state;
     if (loading) return this.renderLoading();
 
     if (isLastItem || !media) return this.renderLastItem();
 
     const {description, date, isVideo} = media;
     return (
-      <View style={styles.itemContainer}>
+      <View
+        style={
+          shouldShowModal
+            ? styles.itemContainerWithModalOpen
+            : styles.itemContainer
+        }>
         {isVideo ? this.renderVideo() : this.renderImage()}
         <View style={styles.textContainer}>
           <View style={styles.textBlockView}>
             <Text>Data: </Text>
-            <Text style={{textDecorationLine: 'underline'}}>
-              {moment(date).format('DD/MM/YYYY')}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({
+                  shouldShowModal: true,
+                  isVideoPaused: true,
+                });
+                this.setShouldShowVideoStatusIcon(true);
+              }}>
+              <Text style={{textDecorationLine: 'underline'}}>
+                {moment(date).format('DD/MM/YYYY')}
+              </Text>
+            </TouchableOpacity>
           </View>
-          <View style={{...styles.textBlockView, flexDirection: 'column'}}>
+          <View
+            style={{
+              ...styles.textBlockView,
+              flexDirection: 'column',
+            }}>
             <TextInput
               value={description}
               onChangeText={onChangeDescription}
@@ -130,6 +190,7 @@ export default class AddMediaItem extends React.Component {
             />
           </View>
         </View>
+        {this.renderModal()}
       </View>
     );
   }
@@ -141,6 +202,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignSelf: 'stretch',
     padding: 5,
+  },
+  modalView: {
+    flex: 1,
+    backgroundColor: 'floralwhite',
+    height: 350,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    marginLeft: 40,
+    marginRight: 40,
+    marginTop: 150,
+    marginBottom: 150,
   },
   inputStyle: {
     minHeight: 45,
@@ -159,7 +235,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'floralwhite',
     borderRadius: 25,
   },
+  itemContainerWithModalOpen: {
+    margin: 40,
+    marginBottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: 'floralwhite',
+    borderRadius: 25,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
   itemMedia: {
+    borderRadius: 25,
+    alignSelf: 'stretch',
+    flex: 1,
+  },
+  itemMediaWithModalOpen: {
+    opacity: 0.1,
     borderRadius: 25,
     alignSelf: 'stretch',
     flex: 1,
@@ -172,6 +264,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.65)',
     color: 'white',
     borderRadius: 25,
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  videoWithModal: {
+    opacity: 0.1,
+    width: '100%',
+    height: '100%',
   },
   textContainer: {
     alignSelf: 'stretch',

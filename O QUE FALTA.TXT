@@ -1,0 +1,16 @@
+Mídias:
+  Adicionar o campo de data ao adicionar mídia
+  Editar mídia
+    Só será possível editar a data e a descrição
+  Ver mídia com mais detalhes
+  Compartilhar mídia
+
+DRAWER:
+  Mudar header da tela de Mídias
+    Colocar imagem de menu
+  Mudar header da tela de adicionar Mídias
+    Colocar seta para voltar e desabilitar o back pelo botão
+  Mudar texto da tela de mídias no drawer 
+  Colocar seta de voltar no drawer
+
+VAI TER A PARTE DO NOSSO MOMENTOS OU FRASE DO DIA ? 

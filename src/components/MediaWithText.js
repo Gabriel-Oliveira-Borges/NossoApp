@@ -25,6 +25,9 @@ export default class MediaWithText extends React.Component {
     this.handleEditMedia = this.handleEditMedia.bind(this);
     this.handleShareMedia = this.handleShareMedia.bind(this);
     this.handleSeeMediaDetails = this.handleSeeMediaDetails.bind(this);
+    this.setShouldShowVideoStatusIcon = this.setShouldShowVideoStatusIcon.bind(
+      this,
+    );
   }
 
   handleSeeMediaDetails() {}
@@ -53,6 +56,15 @@ export default class MediaWithText extends React.Component {
     }
   }
 
+  setShouldShowVideoStatusIcon(newValue) {
+    this.setState({shouldShowVideoStatusIcon: newValue}, () =>
+      setTimeout(
+        () => this.setState({shouldShowVideoStatusIcon: !newValue}),
+        2000,
+      ),
+    );
+  }
+
   async showMediaOptions() {
     const {isVideo} = this.props.media;
     DialogAndroid.assignDefaults({
@@ -64,7 +76,10 @@ export default class MediaWithText extends React.Component {
       null,
       {
         items: [
-          {label: isVideo ? 'Ver video' : 'Ver imagem', id: 'details'},
+          {
+            label: isVideo ? 'Ver video' : 'Ver imagem',
+            id: 'details',
+          },
           {label: 'Compartilhar', id: 'share'},
           {label: 'Editar', id: 'edit'},
           {label: 'Excluir', id: 'delete'},
@@ -98,20 +113,13 @@ export default class MediaWithText extends React.Component {
     } = this.state;
     return (
       <TouchableOpacity
-        onPress={() =>
-          this.setState(
-            {
-              isVideoPaused: !isVideoPaused,
-              shouldShowVideoImage: false,
-              shouldShowVideoStatusIcon: true,
-            },
-            () =>
-              setTimeout(
-                () => this.setState({shouldShowVideoStatusIcon: false}),
-                2000,
-              ),
-          )
-        }
+        onPress={() => {
+          this.setState({
+            isVideoPaused: !isVideoPaused,
+            shouldShowVideoImage: false,
+          });
+          this.setShouldShowVideoStatusIcon(true);
+        }}
         onLongPress={this.showMediaOptions}>
         {shouldShowVideoImage ? (
           <Image
