@@ -17,7 +17,6 @@ export default class FloatingButton extends React.Component {
   }
 
   renderCollapsed() {
-    const {onPress} = this.props;
     return (
       <TouchableOpacity
         style={styles.touchable}
@@ -28,16 +27,16 @@ export default class FloatingButton extends React.Component {
   }
 
   renderExtended() {
-    const {onPress} = this.props;
+    const {onFilesPress, onCameraPress, onLinkPress} = this.props;
     return (
       <View>
-        <TouchableOpacity style={styles.touchable} onPress={onPress}>
+        <TouchableOpacity style={styles.touchable} onPress={onCameraPress}>
           <Image source={cameraIcon} style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.touchable} onPress={onPress}>
+        <TouchableOpacity style={styles.touchable} onPress={onFilesPress}>
           <Image source={folderIcon} style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.touchable} onPress={onPress}>
+        <TouchableOpacity style={styles.touchable} onPress={onLinkPress}>
           <Image source={linkIcon} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity

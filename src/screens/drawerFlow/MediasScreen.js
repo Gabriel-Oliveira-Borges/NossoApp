@@ -14,18 +14,41 @@ class MediaScreen extends React.Component {
     super(props);
 
     this.renderMedias = this.renderMedias.bind(this);
-    this.handleOnAddMediaClick = this.handleOnAddMediaClick.bind(this);
+    this.handleAddMedia = this.handleAddMedia.bind(this);
+    this.handleOnCameraPress = this.handleOnCameraPress.bind(this);
+    this.handleOnFilesPress = this.handleOnFilesPress.bind(this);
+    this.handleOnLinkPress = this.handleOnLinkPress.bind(this);
   }
 
   componentWillMount() {
     AddToRedux.getAllMedias();
   }
 
-  async handleOnAddMediaClick() {
-    const result = await ImagePickerHandler.mediaPicker();
-    if (result?.length > 0) {
-      this.props.navigation.navigate('AddMediasScreen', {medias: result});
+  async handleAddMedia(medias, fromLink) {
+    if (medias?.length > 0 || fromLink) {
+      this.props.navigation.navigate('AddMediasScreen', {
+        medias: medias,
+        fromLink,
+      });
     }
+  }
+
+  async handleOnCameraPress() {
+    const media = [await ImagePickerHandler.openCamera()];
+
+    if (media?.length > 0) {
+      this.handleAddMedia(media, false);
+    }
+  }
+
+  async handleOnFilesPress() {
+    const medias = await ImagePickerHandler.mediaPicker();
+    this.handleAddMedia(medias, false);
+  }
+
+  handleOnLinkPress() {
+    console.log('clicou no link');
+    // this.handleAddMedia(null, true);
   }
 
   renderLoading = () => <LoadingComponent />;
@@ -59,7 +82,11 @@ class MediaScreen extends React.Component {
       <SafeAreaView style={styles.container}>
         <BackgroundComponent>
           {!data ? this.renderNoData() : this.renderMedias()}
-          <FloatingButton onPress={this.handleOnAddMediaClick} />
+          <FloatingButton
+            onCameraPress={this.handleOnCameraPress}
+            onFilesPress={this.handleOnFilesPress}
+            onLinkPress={this.handleOnLinkPress}
+          />
         </BackgroundComponent>
       </SafeAreaView>
     );
