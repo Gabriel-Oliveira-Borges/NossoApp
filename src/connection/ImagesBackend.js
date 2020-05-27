@@ -50,6 +50,7 @@ firebase.storage().ref().constructor.prototype.putMediasInStorage = (
 ) => {
   return Promise.all(
     medias.map(async (media) => {
+      if (media.isFromLink) return null;
       const fileName = create_UUID();
       const blob = await pathToBlob(media.path);
       return firebase
@@ -67,15 +68,20 @@ firebase.firestore().constructor.prototype.putMediasInFirestore = (
 ) => {
   return Promise.all(
     medias.map(async (media, i) => {
-      const downloadUrl = await storageResult[i].ref.getDownloadURL();
+      const downloadUrl =
+        (await (storageResult && storageResult[i]?.ref?.getDownloadURL())) ||
+        media.uri;
+      const doc =
+        (storageResult && storageResult[i]?.ref.name) || create_UUID();
       return firebase
         .firestore()
         .collection('medias')
-        .doc(storageResult[i].ref.name)
+        .doc(doc)
         .set({
           isVideo: media.isVideo,
           description: media.description,
           date: firebase.firestore.Timestamp.fromDate(new Date(media.date)),
+          isFromLink: media.isFromLink || false,
           uri: downloadUrl,
         });
     }),

@@ -24,11 +24,10 @@ class MediaScreen extends React.Component {
     AddToRedux.getAllMedias();
   }
 
-  async handleAddMedia(medias, fromLink) {
-    if (medias?.length > 0 || fromLink) {
+  async handleAddMedia(medias) {
+    if (medias?.length > 0) {
       this.props.navigation.navigate('AddMediasScreen', {
         medias: medias,
-        fromLink,
       });
     }
   }
@@ -36,19 +35,24 @@ class MediaScreen extends React.Component {
   async handleOnCameraPress() {
     const media = [await ImagePickerHandler.openCamera()];
 
-    if (media?.length > 0) {
-      this.handleAddMedia(media, false);
+    if (media[0]) {
+      this.handleAddMedia(media);
     }
   }
 
   async handleOnFilesPress() {
     const medias = await ImagePickerHandler.mediaPicker();
-    this.handleAddMedia(medias, false);
+    this.handleAddMedia(medias);
   }
 
   handleOnLinkPress() {
-    console.log('clicou no link');
-    // this.handleAddMedia(null, true);
+    const media = [
+      {
+        isFromLink: true,
+        uri: '',
+      },
+    ];
+    this.handleAddMedia(media);
   }
 
   renderLoading = () => <LoadingComponent />;
@@ -75,7 +79,7 @@ class MediaScreen extends React.Component {
 
   render() {
     const {loading, data} = this.props;
-
+    console.log(data);
     if (loading) return this.renderLoading();
 
     return (

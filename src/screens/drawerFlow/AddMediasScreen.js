@@ -23,28 +23,38 @@ class AddMediasScreen extends React.Component {
     this.prepareInicialState = this.prepareInicialState.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeUri = this.onChangeUri.bind(this);
+    this.onSetMediaType = this.onSetMediaType.bind(this);
+    this.changeItemState = this.changeItemState.bind(this);
   }
 
   componentWillMount() {
     this.prepareInicialState();
   }
 
-  onChangeDate(selectedDate) {
+  changeItemState(field, value) {
     const {activeSlideIndex, medias} = this.state;
     const currentMedia = medias[activeSlideIndex];
-    currentMedia.date = selectedDate;
+    currentMedia[field] = value;
     medias[activeSlideIndex] = currentMedia;
 
     this.setState({medias: medias});
   }
 
-  onChangeDescription(text) {
-    const {activeSlideIndex, medias} = this.state;
-    const currentMedia = medias[activeSlideIndex];
-    currentMedia.description = text;
-    medias[activeSlideIndex] = currentMedia;
+  onChangeDate(selectedDate) {
+    this.changeItemState('date', selectedDate);
+  }
 
-    this.setState({medias: medias});
+  onChangeDescription(text) {
+    this.changeItemState('description', text);
+  }
+
+  onChangeUri(uri) {
+    this.changeItemState('uri', uri);
+  }
+
+  onSetMediaType(isVideo) {
+    this.changeItemState('isVideo', isVideo);
   }
 
   handleMediasUpload() {
@@ -60,7 +70,7 @@ class AddMediasScreen extends React.Component {
     const newMedias = medias.map((media) => ({
       description: '',
       date: filePathToDate(media.path),
-      isVideo: media.mime.indexOf('video') !== -1,
+      isVideo: media.isFromLink ? false : media.mime.indexOf('video') !== -1,
       ...media,
     }));
 
@@ -119,6 +129,8 @@ class AddMediasScreen extends React.Component {
                 handleMediasUpload={this.handleMediasUpload}
                 onChangeDescription={this.onChangeDescription}
                 onChangeDate={this.onChangeDate}
+                onChangeUri={this.onChangeUri}
+                onSetMediaType={this.onSetMediaType}
               />
             )}
           />

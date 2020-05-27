@@ -15,6 +15,7 @@ import LoadingScreen from './LoadingComponent';
 import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
 import CalendarPicker from './ CalendarPicker';
+import {Switch} from 'react-native-gesture-handler';
 
 export default class AddMediaItem extends React.Component {
   constructor(props) {
@@ -30,6 +31,8 @@ export default class AddMediaItem extends React.Component {
     this.setShouldShowVideoStatusIcon = this.setShouldShowVideoStatusIcon.bind(
       this,
     );
+
+    this.handleVideoSelection = this.handleVideoSelection.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,6 +41,17 @@ export default class AddMediaItem extends React.Component {
         isVideoPaused: false,
         shouldShowVideoStatusIcon: true,
       });
+    }
+  }
+
+  handleVideoSelection(isVideo) {
+    const {onSetMediaType, media} = this.props;
+    onSetMediaType(isVideo);
+    if (isVideo && media.uri?.lenght > 0) {
+      this.setState({isVideoPaused: false});
+      this.setShouldShowVideoStatusIcon(true);
+    } else if (!isVideo) {
+      this.setState({shouldShowVideoStatusIcon: false, isVideoPaused: true});
     }
   }
 
@@ -61,7 +75,7 @@ export default class AddMediaItem extends React.Component {
   }
 
   renderImage() {
-    const {path} = this.props.media;
+    const {path, uri, isFromLink} = this.props.media;
     const {shouldShowModal} = this.state;
     return (
       <Image
@@ -69,13 +83,13 @@ export default class AddMediaItem extends React.Component {
         style={
           shouldShowModal ? styles.itemMediaWithModalOpen : styles.itemMedia
         }
-        source={{uri: path}}
+        source={{uri: isFromLink ? uri : path}}
       />
     );
   }
 
   renderVideo() {
-    const {path} = this.props.media;
+    const {path, uri, isFromLink} = this.props.media;
     const {
       isVideoPaused,
       shouldShowVideoStatusIcon,
@@ -98,7 +112,7 @@ export default class AddMediaItem extends React.Component {
           ref={(ref) => {
             this.player = ref;
           }}
-          source={{uri: path}}
+          source={{uri: isFromLink ? uri : path}}
           paused={isVideoPaused}
           controls={false}
           bufferConfig={{
@@ -152,6 +166,37 @@ export default class AddMediaItem extends React.Component {
     );
   };
 
+  renderLinkInput() {
+    const {onChangeUri, media} = this.props;
+    const {uri} = media;
+    return (
+      <View
+        style={{
+          ...styles.textBlockView,
+          flexDirection: 'column',
+        }}>
+        <TextInput
+          value={uri}
+          onChangeText={onChangeUri}
+          style={styles.inputStyle}
+          placeholder="Link"
+        />
+      </View>
+    );
+  }
+
+  renderVideoOrImageSelector() {
+    const {media} = this.props;
+    const {isVideo} = media;
+    return (
+      <View style={styles.textBlockView}>
+        <Text>Imagem</Text>
+        <Switch value={isVideo} onValueChange={this.handleVideoSelection} />
+        <Text>Vídeo</Text>
+      </View>
+    );
+  }
+
   render() {
     const {isLastItem, media, onChangeDescription, loading} = this.props;
     const {shouldShowModal} = this.state;
@@ -159,7 +204,8 @@ export default class AddMediaItem extends React.Component {
 
     if (isLastItem || !media) return this.renderLastItem();
 
-    const {description, date, isVideo} = media;
+    const {description, date, isVideo, isFromLink} = media;
+
     return (
       <View
         style={
@@ -169,21 +215,30 @@ export default class AddMediaItem extends React.Component {
         }>
         {isVideo ? this.renderVideo() : this.renderImage()}
         <View style={styles.textContainer}>
-          <View style={styles.textBlockView}>
-            <Text>Data: </Text>
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({
-                  shouldShowModal: true,
-                  isVideoPaused: true,
-                });
-                this.setShouldShowVideoStatusIcon(true);
-              }}>
-              <Text style={{textDecorationLine: 'underline'}}>
-                {moment(date).format('DD/MM/YYYY')}
-              </Text>
-            </TouchableOpacity>
+          <View
+            style={{
+              ...styles.textBlockView,
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <Text>Data: </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({
+                    shouldShowModal: true,
+                    isVideoPaused: true,
+                  });
+                  this.setShouldShowVideoStatusIcon(true);
+                }}>
+                <Text style={{textDecorationLine: 'underline'}}>
+                  {moment(date).format('DD/MM/YYYY')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {isFromLink && this.renderVideoOrImageSelector()}
           </View>
+          {isFromLink && this.renderLinkInput()}
           <View
             style={{
               ...styles.textBlockView,
@@ -205,12 +260,6 @@ export default class AddMediaItem extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  textBlockView: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignSelf: 'stretch',
-    padding: 5,
-  },
   modalView: {
     flex: 1,
     backgroundColor: 'floralwhite',
@@ -254,9 +303,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   itemMedia: {
-    borderRadius: 25,
     alignSelf: 'stretch',
     flex: 1,
+    borderRadius: 25,
+    borderColor: 'rgba(0,0,0,0.4)',
+    borderWidth: 1,
   },
   itemMediaWithModalOpen: {
     opacity: 0.1,
@@ -272,6 +323,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.65)',
     color: 'white',
     borderRadius: 25,
+  },
+  textBlockView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignSelf: 'stretch',
+    padding: 5,
   },
   video: {
     width: '100%',
