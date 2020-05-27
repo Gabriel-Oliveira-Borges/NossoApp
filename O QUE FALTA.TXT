@@ -1,5 +1,4 @@
 Mídias:
-  Adicionar o campo de data ao adicionar mídia
   Editar mídia
     Só será possível editar a data e a descrição
   Ver mídia com mais detalhes
