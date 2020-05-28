@@ -21,6 +21,7 @@ class MediaScreen extends React.Component {
     this.handleOnLinkPress = this.handleOnLinkPress.bind(this);
     this.handleEditMedia = this.handleEditMedia.bind(this);
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
+    this.handleSeeMedia = this.handleSeeMedia.bind(this);
   }
 
   componentWillMount() {
@@ -33,6 +34,10 @@ class MediaScreen extends React.Component {
         medias: medias,
       });
     }
+  }
+
+  handleSeeMedia(media) {
+    this.props.navigation.navigate('SeeMediaScreen', {media});
   }
 
   async handleOnCameraPress() {
@@ -90,6 +95,7 @@ class MediaScreen extends React.Component {
               navigation={this.props.navigation}
               onEditMedia={this.handleEditMedia}
               onDeleteMedia={this.handleDeleteMedia}
+              onSeeMedia={this.handleSeeMedia}
             />
           </View>
         ))}

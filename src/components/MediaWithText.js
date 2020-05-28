@@ -1,12 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {timeStampToString} from '../utils/general';
 import Video from 'react-native-video';
 import backgroundVideoImage from '../assets/images/playVideoButton.png';
 import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
 import DialogAndroid from 'react-native-dialogs';
-import Backend from '../connection/Backend';
 
 export default class MediaWithText extends React.Component {
   constructor(props) {
@@ -23,13 +21,10 @@ export default class MediaWithText extends React.Component {
     this.showMediaOptions = this.showMediaOptions.bind(this);
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
     this.handleShareMedia = this.handleShareMedia.bind(this);
-    this.handleSeeMediaDetails = this.handleSeeMediaDetails.bind(this);
     this.setShouldShowVideoStatusIcon = this.setShouldShowVideoStatusIcon.bind(
       this,
     );
   }
-
-  handleSeeMediaDetails() {}
 
   handleShareMedia() {}
 
@@ -86,6 +81,7 @@ export default class MediaWithText extends React.Component {
     );
 
     if (selectedItem?.id === 'details') {
+      this.props.onSeeMedia(media);
     } else if (selectedItem?.id === 'share') {
       this.handleShareMedia();
     } else if (selectedItem?.id === 'edit') {
