@@ -55,3 +55,9 @@ export function filePathToDate(filePath) {
 
   return moment(dateString, 'YYYYMMDD');
 }
+
+export function timeStampToMoment(timestamp) {
+  const seconds = timestamp?.seconds || timestamp;
+
+  return seconds ? moment(new Date(seconds * 1000)) : moment();
+}

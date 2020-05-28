@@ -1,6 +1,4 @@
 Mídias:
-  Editar mídia
-    Só será possível editar a data e a descrição
   Ver mídia com mais detalhes
   Compartilhar mídia
 
@@ -11,5 +9,9 @@ DRAWER:
     Colocar seta para voltar e desabilitar o back pelo botão
   Mudar texto da tela de mídias no drawer 
   Colocar seta de voltar no drawer
+
+Colocar fotos e mensagens
+
+Mudar nome e ícone do app
 
 VAI TER A PARTE DO NOSSO MOMENTOS OU FRASE DO DIA ? 

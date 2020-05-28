@@ -17,4 +17,9 @@ export default class Backend {
   static deleteMedia(media) {
     ImagesBackend.deleteMedia(media);
   }
+
+  static EditMedia(medias) {
+    const media = medias[0];
+    ImagesBackend.editMedia(media);
+  }
 }

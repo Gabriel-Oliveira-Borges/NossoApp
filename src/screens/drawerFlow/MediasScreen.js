@@ -8,6 +8,7 @@ import LoadingComponent from '../../components/LoadingComponent';
 import BackgroundComponent from '../../components/BackgroundComponent';
 import FloatingButton from '../../components/FloatingButton';
 import ImagePickerHandler from '../../utils/medias/ImagePickerHandler';
+import Backend from '../../connection/Backend';
 
 class MediaScreen extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class MediaScreen extends React.Component {
     this.handleOnCameraPress = this.handleOnCameraPress.bind(this);
     this.handleOnFilesPress = this.handleOnFilesPress.bind(this);
     this.handleOnLinkPress = this.handleOnLinkPress.bind(this);
+    this.handleEditMedia = this.handleEditMedia.bind(this);
+    this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
   }
 
   componentWillMount() {
@@ -45,6 +48,18 @@ class MediaScreen extends React.Component {
     this.handleAddMedia(medias);
   }
 
+  async handleDeleteMedia(media) {
+    Backend.deleteMedia(media);
+  }
+
+  handleEditMedia(media) {
+    media.edit = true;
+    this.props.navigation.navigate('AddMediasScreen', {
+      medias: [media],
+      edit: true,
+    });
+  }
+
   handleOnLinkPress() {
     const media = [
       {
@@ -70,7 +85,12 @@ class MediaScreen extends React.Component {
       <ScrollView style={styles.container}>
         {data.map((media, i) => (
           <View key={i} style={{padding: 20}}>
-            <MediaWithText media={media} />
+            <MediaWithText
+              media={media}
+              navigation={this.props.navigation}
+              onEditMedia={this.handleEditMedia}
+              onDeleteMedia={this.handleDeleteMedia}
+            />
           </View>
         ))}
       </ScrollView>
@@ -79,7 +99,7 @@ class MediaScreen extends React.Component {
 
   render() {
     const {loading, data} = this.props;
-    console.log(data);
+
     if (loading) return this.renderLoading();
 
     return (

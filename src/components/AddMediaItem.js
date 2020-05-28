@@ -65,17 +65,20 @@ export default class AddMediaItem extends React.Component {
   }
 
   renderLastItem() {
-    const {handleMediasUpload} = this.props;
+    const {handleMediasUpload, edit} = this.props;
     return (
       <View style={styles.itemContainer}>
         <Text>Último item</Text>
-        <Button title="fazer upload" onPress={handleMediasUpload} />
+        <Button
+          title={edit ? 'Editar' : 'Adicionar'}
+          onPress={handleMediasUpload}
+        />
       </View>
     );
   }
 
   renderImage() {
-    const {path, uri, isFromLink} = this.props.media;
+    const {path, uri, isFromLink, edit} = this.props.media;
     const {shouldShowModal} = this.state;
     return (
       <Image
@@ -83,13 +86,13 @@ export default class AddMediaItem extends React.Component {
         style={
           shouldShowModal ? styles.itemMediaWithModalOpen : styles.itemMedia
         }
-        source={{uri: isFromLink ? uri : path}}
+        source={{uri: isFromLink || edit ? uri : path}}
       />
     );
   }
 
   renderVideo() {
-    const {path, uri, isFromLink} = this.props.media;
+    const {path, uri, isFromLink, edit} = this.props.media;
     const {
       isVideoPaused,
       shouldShowVideoStatusIcon,
@@ -112,7 +115,7 @@ export default class AddMediaItem extends React.Component {
           ref={(ref) => {
             this.player = ref;
           }}
-          source={{uri: isFromLink ? uri : path}}
+          source={{uri: isFromLink || edit ? uri : path}}
           paused={isVideoPaused}
           controls={false}
           bufferConfig={{

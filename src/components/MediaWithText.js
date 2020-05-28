@@ -22,7 +22,6 @@ export default class MediaWithText extends React.Component {
     this.renderVideo = this.renderVideo.bind(this);
     this.showMediaOptions = this.showMediaOptions.bind(this);
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
-    this.handleEditMedia = this.handleEditMedia.bind(this);
     this.handleShareMedia = this.handleShareMedia.bind(this);
     this.handleSeeMediaDetails = this.handleSeeMediaDetails.bind(this);
     this.setShouldShowVideoStatusIcon = this.setShouldShowVideoStatusIcon.bind(
@@ -33,8 +32,6 @@ export default class MediaWithText extends React.Component {
   handleSeeMediaDetails() {}
 
   handleShareMedia() {}
-
-  handleEditMedia() {}
 
   async handleDeleteMedia() {
     const {media} = this.props;
@@ -52,7 +49,7 @@ export default class MediaWithText extends React.Component {
     const {action} = await DialogAndroid.showPicker(messageTitle, null, {});
 
     if (action === 'actionPositive') {
-      Backend.deleteMedia(media);
+      this.props.onDeleteMedia(media);
     }
   }
 
@@ -66,7 +63,8 @@ export default class MediaWithText extends React.Component {
   }
 
   async showMediaOptions() {
-    const {isVideo} = this.props.media;
+    const {media} = this.props;
+    const {isVideo} = media;
     DialogAndroid.assignDefaults({
       positiveText: '',
       negativeText: 'Cancelar',
@@ -91,7 +89,7 @@ export default class MediaWithText extends React.Component {
     } else if (selectedItem?.id === 'share') {
       this.handleShareMedia();
     } else if (selectedItem?.id === 'edit') {
-      this.handleEditMedia();
+      this.props.onEditMedia(media);
     } else if (selectedItem?.id === 'delete') {
       this.handleDeleteMedia();
     }
@@ -170,13 +168,11 @@ export default class MediaWithText extends React.Component {
       <TouchableOpacity
         style={styles.container}
         onLongPress={this.showMediaOptions}
-        delayLongPress={50}>
+        delayLongPress={1500}>
         {isVideo ? this.renderVideo() : this.renderImage()}
         <View style={styles.textsView}>
           {date && (
-            <Text style={styles.dateText}>
-              {timeStampToString(date, 'DD/MM/YYYY')}
-            </Text>
+            <Text style={styles.dateText}>{date.format('DD/MM/YYYY')}</Text>
           )}
           {!!description && <Text>{description}</Text>}
         </View>

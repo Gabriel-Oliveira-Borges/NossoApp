@@ -11,7 +11,7 @@ export default class ImagesBackend {
       firebase
         .firestore()
         .collection('medias')
-        .orderBy('date')
+        .orderBy('date', 'desc')
         .onSnapshot(callback);
     } catch (e) {
       console.error('getAllImagesSnap error: ', e);
@@ -38,6 +38,26 @@ export default class ImagesBackend {
         firebase.storage().ref().child(media.id).delete(),
       );
       setMediasScreenLoading(false);
+    } catch (e) {
+      setMediasScreenLoading(false);
+      console.error('deleteMedia error: ', e);
+    }
+  }
+
+  static async editMedia(media) {
+    try {
+      setMediasScreenLoading(true);
+      firebase
+        .firestore()
+        .collection('medias')
+        .doc(media.id)
+        .update({
+          isVideo: media.isVideo,
+          description: media.description,
+          date: firebase.firestore.Timestamp.fromDate(new Date(media.date)),
+          isFromLink: media.isFromLink || false,
+          uri: media.uri,
+        });
     } catch (e) {
       setMediasScreenLoading(false);
       console.error('deleteMedia error: ', e);

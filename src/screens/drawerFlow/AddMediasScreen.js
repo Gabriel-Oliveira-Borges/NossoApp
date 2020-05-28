@@ -59,9 +59,13 @@ class AddMediasScreen extends React.Component {
 
   handleMediasUpload() {
     const {medias} = this.state;
+    const {edit} = this.props.route.params;
     medias.pop(); // remove a última tela que é a de upload
-
-    Backend.uploadMedias(medias);
+    if (edit) {
+      Backend.EditMedia(medias);
+    } else {
+      Backend.uploadMedias(medias);
+    }
     this.props.navigation.goBack();
   }
 
@@ -70,7 +74,7 @@ class AddMediasScreen extends React.Component {
     const newMedias = medias.map((media) => ({
       description: '',
       date: filePathToDate(media.path),
-      isVideo: media.isFromLink ? false : media.mime.indexOf('video') !== -1,
+      isVideo: media.isFromLink ? false : media.mime?.indexOf('video') !== -1,
       ...media,
     }));
 
@@ -101,6 +105,7 @@ class AddMediasScreen extends React.Component {
 
   render() {
     const {medias, loading, activeSlideIndex, loadingItem} = this.state;
+    const {edit} = this.props.route.params;
     if (loading) return <LoadingScreen />;
 
     return (
@@ -131,6 +136,7 @@ class AddMediasScreen extends React.Component {
                 onChangeDate={this.onChangeDate}
                 onChangeUri={this.onChangeUri}
                 onSetMediaType={this.onSetMediaType}
+                edit={edit}
               />
             )}
           />
