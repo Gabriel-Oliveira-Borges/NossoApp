@@ -1,6 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, SafeAreaView, StyleSheet, Share} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  Share,
+  ToastAndroid,
+} from 'react-native';
 import {AddToRedux} from '../../utils/data/AddToRedux';
 import MediaWithText from '../../components/MediaWithText';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -24,6 +31,7 @@ class MediaScreen extends React.Component {
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
     this.handleSeeMedia = this.handleSeeMedia.bind(this);
     this.handleShareMedia = this.handleShareMedia.bind(this);
+    this.handleDownloadMedia = this.handleDownloadMedia.bind(this);
   }
 
   componentWillMount() {
@@ -38,13 +46,30 @@ class MediaScreen extends React.Component {
     }
   }
 
+  handleShareMedia(media) {
+    Share.share(
+      {
+        message: media.uri,
+        url: media.uri,
+      },
+      {dialogTitle: 'Compartilhar'},
+    );
+  }
+
   handleSeeMedia(media) {
     this.props.navigation.navigate('SeeMediaScreen', {media});
   }
 
-  async handleShareMedia(media) {
-    const filePath = await downloadMedia(media);
-    console.log(filePath);
+  async handleDownloadMedia(media) {
+    try {
+      const filePath = await downloadMedia(media);
+      console.log(filePath);
+      let message = media.isVideo ? 'Vídeo baixado' : 'Imagem baixada';
+      ToastAndroid.show(message, 1000);
+    } catch (e) {
+      console.log(e);
+      ToastAndroid.show('Ocorreu um erro', 1000);
+    }
   }
 
   async handleOnCameraPress() {
@@ -103,6 +128,7 @@ class MediaScreen extends React.Component {
               onEditMedia={this.handleEditMedia}
               onDeleteMedia={this.handleDeleteMedia}
               onSeeMedia={this.handleSeeMedia}
+              onDownloadMedia={this.handleDownloadMedia}
               onShareMedia={this.handleShareMedia}
             />
           </View>

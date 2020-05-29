@@ -71,8 +71,8 @@ export function downloadMedia(media) {
   const dir = RNFetchBlob.fs.dirs;
   const path =
     Platform.OS === 'ios'
-      ? dir['MainBundleDir'] + imageName
-      : dir.PictureDir + imageName;
+      ? dir['MainBundleDir'] + '/' + imageName
+      : dir.PictureDir + '/' + imageName;
 
   if (Platform.OS == 'android') {
     return RNFetchBlob.config({
@@ -89,7 +89,7 @@ export function downloadMedia(media) {
       },
     })
       .fetch('GET', uri)
-      .then((res) => res.data);
+      .then((res) => res);
   } else {
     CameraRoll.saveToCameraRoll(uri);
   }
