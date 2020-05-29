@@ -20,7 +20,7 @@ export default class ImagePickerHandler {
     const settings = {
       width: 300,
       height: 400,
-      mediaType: 'image',
+      mediaType: 'any',
       useFrontCamera: true,
     };
     try {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, Share} from 'react-native';
 import {AddToRedux} from '../../utils/data/AddToRedux';
 import MediaWithText from '../../components/MediaWithText';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -9,6 +9,7 @@ import BackgroundComponent from '../../components/BackgroundComponent';
 import FloatingButton from '../../components/FloatingButton';
 import ImagePickerHandler from '../../utils/medias/ImagePickerHandler';
 import Backend from '../../connection/Backend';
+import {downloadMedia} from '../../utils/general';
 
 class MediaScreen extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class MediaScreen extends React.Component {
     this.handleEditMedia = this.handleEditMedia.bind(this);
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
     this.handleSeeMedia = this.handleSeeMedia.bind(this);
+    this.handleShareMedia = this.handleShareMedia.bind(this);
   }
 
   componentWillMount() {
@@ -38,6 +40,11 @@ class MediaScreen extends React.Component {
 
   handleSeeMedia(media) {
     this.props.navigation.navigate('SeeMediaScreen', {media});
+  }
+
+  async handleShareMedia(media) {
+    const filePath = await downloadMedia(media);
+    console.log(filePath);
   }
 
   async handleOnCameraPress() {
@@ -96,6 +103,7 @@ class MediaScreen extends React.Component {
               onEditMedia={this.handleEditMedia}
               onDeleteMedia={this.handleDeleteMedia}
               onSeeMedia={this.handleSeeMedia}
+              onShareMedia={this.handleShareMedia}
             />
           </View>
         ))}

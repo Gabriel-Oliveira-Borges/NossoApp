@@ -1,6 +1,8 @@
 import moment from 'moment';
 import {store} from '../redux/index';
 import {setLoading} from '../redux/actions/mediaActions';
+import {Platform, CameraRoll} from 'react-native';
+import RNFetchBlob from 'rn-fetch-blob';
 
 export function timeStampToString(date, format) {
   return moment(date.seconds * 1000).format(format);
@@ -60,4 +62,35 @@ export function timeStampToMoment(timestamp) {
   const seconds = timestamp?.seconds || timestamp;
 
   return seconds ? moment(new Date(seconds * 1000)) : moment();
+}
+
+export function downloadMedia(media) {
+  const {uri, id} = media;
+  const imageName = id;
+
+  const dir = RNFetchBlob.fs.dirs;
+  const path =
+    Platform.OS === 'ios'
+      ? dir['MainBundleDir'] + imageName
+      : dir.PictureDir + imageName;
+
+  if (Platform.OS == 'android') {
+    return RNFetchBlob.config({
+      fileCache: true,
+      appendExt: 'png',
+      indicator: true,
+      IOSBackgroundTask: true,
+      path: path,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: path,
+        description: 'Image',
+      },
+    })
+      .fetch('GET', uri)
+      .then((res) => res.data);
+  } else {
+    CameraRoll.saveToCameraRoll(uri);
+  }
 }

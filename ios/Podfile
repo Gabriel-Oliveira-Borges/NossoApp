@@ -79,6 +79,8 @@ target 'NossoApp' do
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
   target 'NossoAppTests' do
     inherit! :complete
     # Pods for testing

@@ -27,7 +27,8 @@
     "react-native-safe-area-context": "1.0.2",
     "react-native-screens": "2.7.0",
     "react-native-snap-carousel": "3.9.0",
-    "react-native-video": "4.4.5"
+    "react-native-video": "4.4.5",
+    "rn-fetch-blob": "0.12.0"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",

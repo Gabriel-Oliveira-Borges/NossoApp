@@ -20,13 +20,10 @@ export default class MediaWithText extends React.Component {
     this.renderVideo = this.renderVideo.bind(this);
     this.showMediaOptions = this.showMediaOptions.bind(this);
     this.handleDeleteMedia = this.handleDeleteMedia.bind(this);
-    this.handleShareMedia = this.handleShareMedia.bind(this);
     this.setShouldShowVideoStatusIcon = this.setShouldShowVideoStatusIcon.bind(
       this,
     );
   }
-
-  handleShareMedia() {}
 
   async handleDeleteMedia() {
     const {media} = this.props;
@@ -83,7 +80,7 @@ export default class MediaWithText extends React.Component {
     if (selectedItem?.id === 'details') {
       this.props.onSeeMedia(media);
     } else if (selectedItem?.id === 'share') {
-      this.handleShareMedia();
+      this.props.onShareMedia(media);
     } else if (selectedItem?.id === 'edit') {
       this.props.onEditMedia(media);
     } else if (selectedItem?.id === 'delete') {
@@ -164,7 +161,7 @@ export default class MediaWithText extends React.Component {
       <TouchableOpacity
         style={styles.container}
         onLongPress={this.showMediaOptions}
-        delayLongPress={1500}>
+        delayLongPress={1000}>
         {isVideo ? this.renderVideo() : this.renderImage()}
         <View style={styles.textsView}>
           {date && (

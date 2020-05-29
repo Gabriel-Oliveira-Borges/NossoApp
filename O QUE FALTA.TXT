@@ -1,6 +1,7 @@
 Mídias:
-  Ver mídia com mais detalhes
+  Colocar o PinchGestureHandler na tela de visualização das imagens
   Compartilhar mídia
+
 
 DRAWER:
   Mudar header da tela de Mídias
