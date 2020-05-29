@@ -16,7 +16,7 @@ import BackgroundComponent from '../../components/BackgroundComponent';
 import FloatingButton from '../../components/FloatingButton';
 import ImagePickerHandler from '../../utils/medias/ImagePickerHandler';
 import Backend from '../../connection/Backend';
-import {downloadMedia} from '../../utils/general';
+import {downloadMedia, setMediasScreenLoading} from '../../utils/general';
 
 class MediaScreen extends React.Component {
   constructor(props) {
@@ -62,11 +62,13 @@ class MediaScreen extends React.Component {
 
   async handleDownloadMedia(media) {
     try {
-      const filePath = await downloadMedia(media);
-      console.log(filePath);
+      setMediasScreenLoading(true);
+      await downloadMedia(media);
+      setMediasScreenLoading(false);
       let message = media.isVideo ? 'Vídeo baixado' : 'Imagem baixada';
       ToastAndroid.show(message, 1000);
     } catch (e) {
+      setMediasScreenLoading(false);
       console.log(e);
       ToastAndroid.show('Ocorreu um erro', 1000);
     }

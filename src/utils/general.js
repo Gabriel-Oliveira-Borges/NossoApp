@@ -67,17 +67,17 @@ export function timeStampToMoment(timestamp) {
 export function downloadMedia(media) {
   const {uri, id} = media;
   const imageName = id;
-
+  const fileExtention = media.isVideo ? '.mp4' : '.png';
   const dir = RNFetchBlob.fs.dirs;
   const path =
     Platform.OS === 'ios'
-      ? dir['MainBundleDir'] + '/' + imageName
-      : dir.PictureDir + '/' + imageName;
+      ? dir['MainBundleDir'] + '/' + imageName + fileExtention
+      : dir.PictureDir + '/' + imageName + fileExtention;
 
   if (Platform.OS == 'android') {
     return RNFetchBlob.config({
       fileCache: true,
-      appendExt: 'png',
+      appendExt: fileExtention,
       indicator: true,
       IOSBackgroundTask: true,
       path: path,
@@ -85,7 +85,7 @@ export function downloadMedia(media) {
         useDownloadManager: true,
         notification: true,
         path: path,
-        description: 'Image',
+        description: media.isVideo ? 'Video' : 'Image',
       },
     })
       .fetch('GET', uri)

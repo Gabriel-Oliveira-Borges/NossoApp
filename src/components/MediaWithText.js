@@ -6,6 +6,10 @@ import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
 import DialogAndroid from 'react-native-dialogs';
 
+Array.prototype.insert = function (index, item) {
+  this.splice(index, 0, item);
+};
+
 export default class MediaWithText extends React.Component {
   constructor(props) {
     super(props);
@@ -61,20 +65,23 @@ export default class MediaWithText extends React.Component {
       positiveText: '',
       negativeText: 'Cancelar',
     });
+    const items = [
+      {
+        label: isVideo ? 'Ver video' : 'Ver imagem',
+        id: 'details',
+      },
+      {label: 'Compartilhar', id: 'share'},
+      {label: 'Editar', id: 'edit'},
+      {label: 'Excluir', id: 'delete'},
+    ];
+    if (!isVideo) {
+      items.insert(2, {label: 'Baixar', id: 'download'});
+    }
     const {selectedItem} = await DialogAndroid.showPicker(
       'Selecione uma opção',
       null,
       {
-        items: [
-          {
-            label: isVideo ? 'Ver video' : 'Ver imagem',
-            id: 'details',
-          },
-          {label: 'Compartilhar', id: 'share'},
-          {label: 'Baixar', id: 'download'},
-          {label: 'Editar', id: 'edit'},
-          {label: 'Excluir', id: 'delete'},
-        ],
+        items: items,
       },
     );
 
