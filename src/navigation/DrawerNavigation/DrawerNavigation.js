@@ -5,15 +5,14 @@ import {
   DrawerItemList,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import MediasScreen from '../../screens/drawerFlow/MediasScreen';
 import MediasStack from './MediasStack';
 import {ChangeStackHandler} from '../../utils/navigation/ChangeStackHandler';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
+import ArrowIcon from '../../assets/images/backArrow.png';
 
 const CloseDrawerView = () => (
-  <View>
-    <Text>Icon</Text>
-    <Text>Fechar</Text>
+  <View style={{alignItems: 'center', justifyContent: 'flex-start'}}>
+    <Image source={ArrowIcon} style={{width: 25, height: 25}} />
   </View>
 );
 
@@ -41,7 +40,7 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigation() {
   return (
     <Drawer.Navigator keyboardDismissMode drawerContent={CustomDrawerContent}>
-      <Drawer.Screen name="Mudar aqui" component={MediasStack} />
+      <Drawer.Screen name="Nossos momentos  <3" component={MediasStack} />
     </Drawer.Navigator>
   );
 }

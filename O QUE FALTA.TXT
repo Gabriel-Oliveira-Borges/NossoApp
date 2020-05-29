@@ -1,18 +1,13 @@
-Mídias:
-  Colocar o PinchGestureHandler na tela de visualização das imagens
-  Compartilhar mídia
-
 
 DRAWER:
-  Mudar header da tela de Mídias
-    Colocar imagem de menu
-  Mudar header da tela de adicionar Mídias
-    Colocar seta para voltar e desabilitar o back pelo botão
-  Mudar texto da tela de mídias no drawer 
-  Colocar seta de voltar no drawer
+  Mudar título do header da tela de Mídias (Mudar aqui)
+
+Mudar tela de confirmação de adição de mídia 
 
 Colocar fotos e mensagens
 
 Mudar nome e ícone do app
+
+FRASE DO DIA 
 
 VAI TER A PARTE DO NOSSO MOMENTOS OU FRASE DO DIA ? 

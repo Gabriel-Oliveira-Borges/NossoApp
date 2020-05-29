@@ -13,7 +13,7 @@ function MediasStack(props) {
         name="MediaScreen"
         component={MediaScreen}
         options={{
-          ...DrawerScreenHeaderOptions(props),
+          ...DrawerScreenHeaderOptions(props, false),
           title: 'Mudar aqui',
         }}
       />
@@ -21,8 +21,8 @@ function MediasStack(props) {
         name="AddMediasScreen"
         component={AddMediasScreen}
         options={{
-          ...DrawerScreenHeaderOptions(props),
-          title: 'Mudar aqui também (colocar pra voltar)',
+          ...DrawerScreenHeaderOptions(props, true),
+          title: 'Adicionar um momento',
         }}
       />
       <Stack.Screen
