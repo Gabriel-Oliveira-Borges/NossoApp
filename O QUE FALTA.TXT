@@ -1,13 +1,7 @@
 
-DRAWER:
-  Mudar título do header da tela de Mídias (Mudar aqui)
-
-Mudar tela de confirmação de adição de mídia 
 
 Colocar fotos e mensagens
 
 Mudar nome e ícone do app
 
 FRASE DO DIA 
-
-VAI TER A PARTE DO NOSSO MOMENTOS OU FRASE DO DIA ? 

@@ -14,7 +14,7 @@ function MediasStack(props) {
         component={MediaScreen}
         options={{
           ...DrawerScreenHeaderOptions(props, false),
-          title: 'Mudar aqui',
+          title: 'Nossos momentos <3',
         }}
       />
       <Stack.Screen
