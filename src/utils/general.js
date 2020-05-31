@@ -45,7 +45,7 @@ export function create_UUID() {
 }
 
 export function filePathToDate(filePath) {
-  const regex = /(IMG|VID)_\d{8}/g;
+  const regex = /(IMG|VID)(_|-)\d{8}/g;
 
   const result = regex.exec(filePath);
 

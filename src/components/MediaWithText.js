@@ -102,7 +102,7 @@ export default class MediaWithText extends React.Component {
   renderImage() {
     const {uri} = this.props.media;
     return (
-      <Image resizeMode="cover" style={styles.media} source={{uri: uri}} />
+      <Image resizeMode="contain" style={styles.media} source={{uri: uri}} />
     );
   }
 
