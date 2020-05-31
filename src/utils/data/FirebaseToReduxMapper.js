@@ -25,7 +25,7 @@ export default class FirebaseToReduxMapper {
     } else {
       const data = [];
       response.docs.forEach((doc) => data.push(doc.data()));
-
+      data.push({}); // para aparecer a última tela
       store.dispatch(setFirstUseData(data));
     }
   }
