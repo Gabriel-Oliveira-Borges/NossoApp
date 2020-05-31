@@ -71,12 +71,13 @@ export default class MediaWithText extends React.Component {
         id: 'details',
       },
       {label: 'Compartilhar', id: 'share'},
+      {label: 'Baixar', id: 'download'}
       {label: 'Editar', id: 'edit'},
       {label: 'Excluir', id: 'delete'},
     ];
-    if (!isVideo) {
-      items.insert(2, {label: 'Baixar', id: 'download'});
-    }
+    // if (!isVideo) {
+    //   items.insert(2, {label: 'Baixar', id: 'download'});
+    // }
     const {selectedItem} = await DialogAndroid.showPicker(
       'Selecione uma opção',
       null,
