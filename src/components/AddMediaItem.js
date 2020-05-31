@@ -16,6 +16,8 @@ import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
 import CalendarPicker from './ CalendarPicker';
 import {Switch} from 'react-native-gesture-handler';
+import SwipeArrow from '../assets/images/SwipeArrow.png';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 export default class AddMediaItem extends React.Component {
   constructor(props) {
@@ -67,12 +69,50 @@ export default class AddMediaItem extends React.Component {
   renderLastItem() {
     const {handleMediasUpload, edit} = this.props;
     return (
-      <View style={styles.itemContainer}>
-        <Text>Último item</Text>
-        <Button
-          title={edit ? 'Editar' : 'Adicionar'}
-          onPress={handleMediasUpload}
-        />
+      <View style={{...styles.itemContainer, backgroundColor: 'transparent'}}>
+        <Swipeable
+          enabled={true}
+          renderLeftActions={() => (
+            <View
+              style={{
+                backgroundColor: 'floralwhite',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderTopLeftRadius: 25,
+                borderBottomLeftRadius: 25,
+                padding: 15,
+              }}>
+              <Text>{edit ? 'Editar' : 'Adicionar'}</Text>
+            </View>
+          )}
+          onSwipeableLeftOpen={handleMediasUpload}>
+          <View
+            style={{
+              backgroundColor: 'floralwhite',
+              alignSelf: 'stretch',
+              flexDirection: 'row',
+              alignItems: 'center',
+              borderRadius: 25,
+              padding: 15,
+            }}>
+            <View
+              style={{
+                backgroundColor: '#5E5E5E',
+                alignSelf: 'flex-start',
+                justifyContent: 'center',
+                padding: 5,
+              }}>
+              <Image source={SwipeArrow} style={{width: 20, height: 20}} />
+            </View>
+            <Text
+              style={{
+                alignSelf: 'center',
+                marginLeft: 15,
+                color: 'rgba(0,0,0,0.5)',
+                fontStyle: 'italic',
+              }}>{`Deslise para ${edit ? 'editar' : 'adicionar'}`}</Text>
+          </View>
+        </Swipeable>
       </View>
     );
   }
