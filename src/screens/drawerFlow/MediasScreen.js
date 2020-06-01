@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {AddToRedux} from '../../utils/data/AddToRedux';
 import MediaWithText from '../../components/MediaWithText';
-import {ScrollView} from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 import LoadingComponent from '../../components/LoadingComponent';
 import BackgroundComponent from '../../components/BackgroundComponent';
 import FloatingButton from '../../components/FloatingButton';
@@ -121,9 +121,11 @@ class MediaScreen extends React.Component {
   renderMedias = () => {
     const {data} = this.props;
     return (
-      <ScrollView style={styles.container}>
-        {data.map((media, i) => (
-          <View key={i} style={{padding: 20}}>
+      <FlatList
+        style={styles.container}
+        data={data}
+        renderItem={({item: media, index}) => (
+          <View key={index} style={{padding: 20}}>
             <MediaWithText
               media={media}
               navigation={this.props.navigation}
@@ -134,8 +136,8 @@ class MediaScreen extends React.Component {
               onShareMedia={this.handleShareMedia}
             />
           </View>
-        ))}
-      </ScrollView>
+        )}
+      />
     );
   };
 

@@ -172,7 +172,7 @@ export default class MediaWithText extends React.Component {
       <TouchableOpacity
         style={styles.container}
         onLongPress={this.showMediaOptions}
-        delayLongPress={1000}>
+        delayLongPress={500}>
         {isVideo ? this.renderVideo() : this.renderImage()}
         <View style={styles.textsView}>
           {date && (
