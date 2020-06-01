@@ -5,6 +5,7 @@ import backgroundVideoImage from '../assets/images/playVideoButton.png';
 import playIcon from '../assets/images/play.png';
 import pauseIcon from '../assets/images/pause.png';
 import DialogAndroid from 'react-native-dialogs';
+import DoubleClick from 'react-native-double-tap';
 
 Array.prototype.insert = function (index, item) {
   this.splice(index, 0, item);
@@ -169,17 +170,16 @@ export default class MediaWithText extends React.Component {
     const {date, description, isVideo} = this.props.media;
 
     return (
-      <TouchableOpacity
-        style={styles.container}
-        onLongPress={this.showMediaOptions}
-        delayLongPress={500}>
-        {isVideo ? this.renderVideo() : this.renderImage()}
-        <View style={styles.textsView}>
-          {date && (
-            <Text style={styles.dateText}>{date.format('DD/MM/YYYY')}</Text>
-          )}
-          {!!description && <Text>{description}</Text>}
-        </View>
+      <TouchableOpacity style={styles.container}>
+        <DoubleClick doubleTap={this.showMediaOptions}>
+          {isVideo ? this.renderVideo() : this.renderImage()}
+          <View style={styles.textsView}>
+            {date && (
+              <Text style={styles.dateText}>{date.format('DD/MM/YYYY')}</Text>
+            )}
+            {!!description && <Text>{description}</Text>}
+          </View>
+        </DoubleClick>
       </TouchableOpacity>
     );
   }

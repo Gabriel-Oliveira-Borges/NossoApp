@@ -21,6 +21,7 @@
     "react-native-base64": "0.0.2",
     "react-native-calendar-picker": "6.1.2",
     "react-native-dialogs": "1.1.0",
+    "react-native-double-tap": "1.0.1",
     "react-native-gesture-handler": "1.6.1",
     "react-native-image-crop-picker": "0.31.1",
     "react-native-reanimated": "1.8.0",
