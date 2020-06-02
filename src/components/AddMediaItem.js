@@ -122,7 +122,7 @@ export default class AddMediaItem extends React.Component {
     const {shouldShowModal} = this.state;
     return (
       <Image
-        resizeMode="cover"
+        resizeMode="contain"
         style={
           shouldShowModal ? styles.itemMediaWithModalOpen : styles.itemMedia
         }

@@ -60,7 +60,7 @@ export default class FirstUseItem extends React.Component {
   render() {
     const {currentItem, isLastItem} = this.props;
     const {item} = currentItem;
-    console.log(currentItem, isLastItem);
+
     if (isLastItem) return this.renderLastItem();
     return (
       <View style={styles.itemContainer}>
