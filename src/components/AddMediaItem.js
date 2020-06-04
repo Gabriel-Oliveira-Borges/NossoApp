@@ -350,7 +350,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 25,
     borderColor: 'rgba(0,0,0,0.4)',
-    borderWidth: 1,
   },
   itemMediaWithModalOpen: {
     opacity: 0.1,
