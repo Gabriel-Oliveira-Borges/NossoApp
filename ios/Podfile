@@ -77,9 +77,7 @@ target 'NossoApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'react-native-video', :path => '../node_modules/react-native-video'
 
-  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
 
   target 'NossoAppTests' do
     inherit! :complete
