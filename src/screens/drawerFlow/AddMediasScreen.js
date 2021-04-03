@@ -37,7 +37,6 @@ class AddMediasScreen extends React.Component {
     const currentMedia = medias[activeSlideIndex];
     currentMedia[field] = value;
     medias[activeSlideIndex] = currentMedia;
-
     this.setState({medias: medias});
   }
 
@@ -51,6 +50,20 @@ class AddMediasScreen extends React.Component {
 
   onChangeUri(uri) {
     this.changeItemState('uri', uri);
+  }
+
+  onChangeSecretCategory = (selected, categoryId) => {
+    const {activeSlideIndex, medias} = this.state;
+    const currentMedia = medias[activeSlideIndex];
+    let currentMediaSecretIds = currentMedia.secretIds || [];
+
+    if (selected == true) {
+      currentMediaSecretIds.push(categoryId);
+    } else {
+      currentMediaSecretIds = currentMediaSecretIds.filter(it => it !== categoryId);
+    }
+
+    this.changeItemState('secretIds', currentMediaSecretIds);
   }
 
   onSetMediaType(isVideo) {
@@ -135,6 +148,7 @@ class AddMediasScreen extends React.Component {
                 onChangeDescription={this.onChangeDescription}
                 onChangeDate={this.onChangeDate}
                 onChangeUri={this.onChangeUri}
+                onChangeSecretCategory={this.onChangeSecretCategory}
                 onSetMediaType={this.onSetMediaType}
                 edit={edit}
               />
@@ -153,8 +167,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({
-  teste: state.medias.loading,
-});
-
-export default connect(mapStateToProps)(AddMediasScreen);
+export default AddMediasScreen;

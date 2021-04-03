@@ -1,6 +1,7 @@
 import {store} from '../../redux/index';
 import {updateMedias} from '../../redux/actions/mediaActions';
 import {setFirstUseData} from '../../redux/actions/firstUseActions';
+import {setSecretPassword, setSecretsConfigs} from '../../redux/actions/secretsActions';
 import {timeStampToMoment} from '../general';
 export default class FirebaseToReduxMapper {
   static mapToMedias(response) {
@@ -17,6 +18,19 @@ export default class FirebaseToReduxMapper {
 
       store.dispatch(updateMedias(medias));
     }
+  }
+
+  static mapSecretConfigs(response) {
+    const configs = response.docs.map((doc) => {
+      const config = doc.data();
+      config.id = doc.ref.id;
+      return config;
+    });
+    store.dispatch(setSecretsConfigs(configs));
+  }
+
+  static mapSecretPassword(password) {
+    store.dispatch(setSecretPassword(password));
   }
 
   static mapToFirstUse(response) {

@@ -57,10 +57,11 @@ export default class ImagesBackend {
           date: firebase.firestore.Timestamp.fromDate(new Date(media.date)),
           isFromLink: media.isFromLink || false,
           uri: media.uri,
+          secretIds: media.secretIds,
         });
     } catch (e) {
       setMediasScreenLoading(false);
-      console.error('deleteMedia error: ', e);
+      console.error('edit media error: ', e);
     }
   }
 }
@@ -103,6 +104,7 @@ firebase.firestore().constructor.prototype.putMediasInFirestore = (
           date: firebase.firestore.Timestamp.fromDate(new Date(media.date)),
           isFromLink: media.isFromLink || false,
           uri: downloadUrl,
+          secretIds: media.secretIds, //testar subir uma foto com isso com algum secretId. Só falta isso para funcionar, mas eu estourei o limite de storage por hj kkkk
         });
     }),
   );

@@ -4,6 +4,9 @@ import MediaScreen from '../../screens/drawerFlow/MediasScreen';
 import DrawerScreenHeaderOptions from '../../components/DrawerScreenHeaderOptions';
 import AddMediasScreen from '../../screens/drawerFlow/AddMediasScreen';
 import SeeMediaScreen from '../../screens/drawerFlow/SeeMediaScreen';
+import EnterPasswordScreen from '../../screens/drawerFlow/EnterPasswordScreen';
+import SecretSettingsScreen from '../../screens/drawerFlow/SecretSettingsScreen';
+import AddConfigScreen from '../../screens/drawerFlow/AddConfigScreen';
 
 const Stack = createStackNavigator();
 function MediasStack(props) {
@@ -28,6 +31,27 @@ function MediasStack(props) {
       <Stack.Screen
         name="SeeMediaScreen"
         component={SeeMediaScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="EnterPasswordScreen"
+        component={EnterPasswordScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="SecretSettingsScreen"
+        component={SecretSettingsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="AddConfigScreen"
+        component={AddConfigScreen}
         options={{
           headerShown: false,
         }}

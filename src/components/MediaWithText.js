@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Alert, Platform} from 'react-native';
 import Video from 'react-native-video';
 import backgroundVideoImage from '../assets/images/playVideoButton.png';
 import playIcon from '../assets/images/play.png';
@@ -39,14 +39,18 @@ export default class MediaWithText extends React.Component {
       messageTitle = 'Deletar imagem ?';
     }
 
-    DialogAndroid.assignDefaults({
-      positiveText: 'Deletar',
-      negativeText: 'Cancelar',
-    });
-    const {action} = await DialogAndroid.showPicker(messageTitle, null, {});
-
-    if (action === 'actionPositive') {
-      this.props.onDeleteMedia(media);
+    if (Platform.OS === 'ios') {
+      Alert.alert(messageTitle,'', [{text: 'Deletar', onPress: () => this.props.onDeleteMedia(media)}, {text: 'Cancelar'}]);
+    } else {
+      DialogAndroid.assignDefaults({
+        positiveText: 'Deletar',
+        negativeText: 'Cancelar',
+      });
+      const {action} = await DialogAndroid.showPicker(messageTitle, null, {});
+  
+      if (action === 'actionPositive') {
+        this.props.onDeleteMedia(media);
+      }
     }
   }
 
@@ -62,10 +66,12 @@ export default class MediaWithText extends React.Component {
   async showMediaOptions() {
     const {media} = this.props;
     const {isVideo} = media;
+
     DialogAndroid.assignDefaults({
       positiveText: '',
       negativeText: 'Cancelar',
     });
+
     const items = [
       {
         label: isVideo ? 'Ver video' : 'Ver imagem',
@@ -79,23 +85,35 @@ export default class MediaWithText extends React.Component {
     // if (!isVideo) {
     //   items.insert(2, {label: 'Baixar', id: 'download'});
     // }
-    const {selectedItem} = await DialogAndroid.showPicker(
-      'Selecione uma opção',
-      null,
-      {
-        items: items,
-      },
-    );
 
-    if (selectedItem?.id === 'details') {
+    if (Platform.OS === 'ios') {
+      Alert.alert('Escolha uma opção','', items.map(selectedOption => (
+        { 
+          text: selectedOption.label, onPress: () => this.handleMediaOptionSelection(media, selectedOption) 
+        }
+      )));
+    } else {
+      const {selectedItem: selectedOption} = await DialogAndroid.showPicker(
+        'Selecione uma opção',
+        null,
+        {
+          items: items,
+        },
+      );
+      this.handleMediaOptionSelection(media, selectedOption);
+    }
+  }
+
+  handleMediaOptionSelection = (media, selectedOption) => {
+    if (selectedOption?.id === 'details') {
       this.props.onSeeMedia(media);
-    } else if (selectedItem?.id === 'share') {
+    } else if (selectedOption?.id === 'share') {
       this.props.onShareMedia(media);
-    } else if (selectedItem?.id === 'edit') {
+    } else if (selectedOption?.id === 'edit') {
       this.props.onEditMedia(media);
-    } else if (selectedItem?.id === 'delete') {
+    } else if (selectedOption?.id === 'delete') {
       this.handleDeleteMedia();
-    } else if (selectedItem?.id === 'download') {
+    } else if (selectedOption?.id === 'download') {
       this.props.onDownloadMedia(media);
     }
   }

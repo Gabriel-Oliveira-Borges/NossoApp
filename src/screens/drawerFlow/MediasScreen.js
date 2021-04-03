@@ -36,6 +36,7 @@ class MediaScreen extends React.Component {
 
   componentWillMount() {
     AddToRedux.getAllMedias();
+    AddToRedux.getSecretPassword();
   }
 
   async handleAddMedia(medias) {
@@ -122,6 +123,7 @@ class MediaScreen extends React.Component {
     const {data} = this.props;
     return (
       <FlatList
+        maxToRenderPerBatch={100}
         style={styles.container}
         data={data}
         renderItem={({item: media, index}) => (
@@ -151,6 +153,7 @@ class MediaScreen extends React.Component {
         <BackgroundComponent>
           {!data ? this.renderNoData() : this.renderMedias()}
           <FloatingButton
+            {...this.props}
             onCameraPress={this.handleOnCameraPress}
             onFilesPress={this.handleOnFilesPress}
             onLinkPress={this.handleOnLinkPress}

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import moment from 'moment';
 import Video from 'react-native-video';
 import LoadingScreen from './LoadingComponent';
@@ -18,8 +19,9 @@ import CalendarPicker from './ CalendarPicker';
 import {Switch} from 'react-native-gesture-handler';
 import SwipeArrow from '../assets/images/SwipeArrow.png';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { connect } from 'react-redux';
 
-export default class AddMediaItem extends React.Component {
+class AddMediaItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -240,6 +242,31 @@ export default class AddMediaItem extends React.Component {
     );
   }
 
+  renderSecretCategories = () => {
+    const { hasPasswordBeenEntered, secretConfigs, onChangeSecretCategory, media } = this.props;
+
+    if (!hasPasswordBeenEntered || !secretConfigs || secretConfigs.length === 0)
+      return null;
+
+    const { secretIds } = media;
+    return (
+      <View>
+        <Text>Selecione as categorias da imagem:</Text>
+        {
+          secretConfigs.map((config) => 
+            <View style={{ marginLeft: 15, marginRight: 15, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Text>{config.description}</Text>
+              <CheckBox 
+                value={!!secretIds && secretIds?.indexOf(config.id) != -1} 
+                onValueChange={(value) => onChangeSecretCategory(value, config.id)}
+              />
+            </View>
+          )
+          }
+      </View>
+    )
+  }
+
   render() {
     const {isLastItem, media, onChangeDescription, loading} = this.props;
     const {shouldShowModal} = this.state;
@@ -281,6 +308,7 @@ export default class AddMediaItem extends React.Component {
             </View>
             {isFromLink && this.renderVideoOrImageSelector()}
           </View>
+          {this.renderSecretCategories()}
           {isFromLink && this.renderLinkInput()}
           <View
             style={{
@@ -387,3 +415,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 });
+
+const mapStateToProps = (state) => ({
+  hasPasswordBeenEntered: state.secrets.hasPasswordBeenEntered,
+  secretConfigs: state.secrets.secretsConfigs,
+});
+
+export default connect(mapStateToProps)(AddMediaItem);

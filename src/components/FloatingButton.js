@@ -40,6 +40,7 @@ export default class FloatingButton extends React.Component {
           <Image source={linkIcon} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity
+          onLongPress={() => this.props.navigation.navigate('EnterPasswordScreen')}
           style={styles.touchable}
           onPress={() => this.setState({isCollapsed: true})}>
           <Image source={reticencesIcon} style={styles.icon} />

@@ -11,6 +11,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@react-native-community/checkbox": "0.5.7",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/drawer": "5.7.5",
     "@react-navigation/native": "5.4.0",
