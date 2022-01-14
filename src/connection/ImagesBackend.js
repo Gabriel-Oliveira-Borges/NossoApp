@@ -71,7 +71,9 @@ firebase.storage().ref().constructor.prototype.putMediasInStorage = (
 ) => {
   return Promise.all(
     medias.map(async (media) => {
-      if (media.isFromLink) return null;
+      if (media.isFromLink) {
+        return null;
+      }
       const fileName = create_UUID();
       const blob = await pathToBlob(media.path);
       return firebase
@@ -104,7 +106,7 @@ firebase.firestore().constructor.prototype.putMediasInFirestore = (
           date: firebase.firestore.Timestamp.fromDate(new Date(media.date)),
           isFromLink: media.isFromLink || false,
           uri: downloadUrl,
-          secretIds: media.secretIds, //testar subir uma foto com isso com algum secretId. Só falta isso para funcionar, mas eu estourei o limite de storage por hj kkkk
+          secretIds: media.secretIds || [], //testar subir uma foto com isso com algum secretId. Só falta isso para funcionar, mas eu estourei o limite de storage por hj kkkk
         });
     }),
   );

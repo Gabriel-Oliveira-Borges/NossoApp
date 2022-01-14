@@ -60,11 +60,13 @@ class AddMediasScreen extends React.Component {
     if (selected == true) {
       currentMediaSecretIds.push(categoryId);
     } else {
-      currentMediaSecretIds = currentMediaSecretIds.filter(it => it !== categoryId);
+      currentMediaSecretIds = currentMediaSecretIds.filter(
+        (it) => it !== categoryId,
+      );
     }
 
     this.changeItemState('secretIds', currentMediaSecretIds);
-  }
+  };
 
   onSetMediaType(isVideo) {
     this.changeItemState('isVideo', isVideo);
@@ -85,6 +87,7 @@ class AddMediasScreen extends React.Component {
   prepareInicialState() {
     const {medias} = this.props.route.params;
     const newMedias = medias.map((media) => ({
+      secretIds: [],
       description: '',
       date: filePathToDate(media.path),
       isVideo: media.isFromLink ? false : media.mime?.indexOf('video') !== -1,
@@ -119,7 +122,9 @@ class AddMediasScreen extends React.Component {
   render() {
     const {medias, loading, activeSlideIndex, loadingItem} = this.state;
     const {edit} = this.props.route.params;
-    if (loading) return <LoadingScreen />;
+    if (loading) {
+      return <LoadingScreen />;
+    }
 
     return (
       <SafeAreaView style={styles.container}>
