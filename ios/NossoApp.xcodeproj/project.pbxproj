@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* NossoAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NossoAppTests.m */; };
-		09499676B92781A41EFE1A6B /* libPods-NossoApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8242FB6A924B87A6B7BA92E /* libPods-NossoApp-tvOSTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -17,9 +16,10 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* NossoAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NossoAppTests.m */; };
-		9D943C8339ABE78C56AF6601 /* libPods-NossoApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CAEB7D7FBC829708A0E8AC /* libPods-NossoApp-tvOS.a */; };
-		A767F5F9EF5E8C003672CAEB /* libPods-NossoApp-NossoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F20A5A03BC683981D14DBBD6 /* libPods-NossoApp-NossoAppTests.a */; };
-		F8DA85618B84E490C4D31C68 /* libPods-NossoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D874C67A680E4A773A4D28 /* libPods-NossoApp.a */; };
+		4692E0A26BD31193D7C6A7C7 /* libPods-NossoApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D19DFCAD6BA684D85DC5E60E /* libPods-NossoApp-tvOSTests.a */; };
+		99F6EC3FB4B6187E3CC23406 /* libPods-NossoApp-NossoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0E23FD7B0FDE484DE3C04DD /* libPods-NossoApp-NossoAppTests.a */; };
+		EC2C18746AC2B2E045FBBDD6 /* libPods-NossoApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CBF115C1DC4E6C9DAC0502 /* libPods-NossoApp-tvOS.a */; };
+		EF5F95D4CBBA37F2F4458D35 /* libPods-NossoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7051004AC960B1231580132C /* libPods-NossoApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,22 +51,22 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NossoApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NossoApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NossoApp/main.m; sourceTree = "<group>"; };
-		1A3FBED3A2F3376801FA9D06 /* Pods-NossoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp.release.xcconfig"; path = "Target Support Files/Pods-NossoApp/Pods-NossoApp.release.xcconfig"; sourceTree = "<group>"; };
-		1B3BE0E8CFDC5A4AACE9256F /* Pods-NossoApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOS/Pods-NossoApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		231438A8713CF6DB52B3D4BA /* Pods-NossoApp-NossoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-NossoAppTests.release.xcconfig"; path = "Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		2CFEC01F8845CD5C95AA3DC2 /* Pods-NossoApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOSTests/Pods-NossoApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* NossoApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NossoApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* NossoApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NossoApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35BA0755AB1D74CA319EC7E6 /* Pods-NossoApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOSTests/Pods-NossoApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		60D869C4DA67966FCC64F4C3 /* Pods-NossoApp-NossoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-NossoAppTests.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		87CAEB7D7FBC829708A0E8AC /* libPods-NossoApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B46ACB39F7BFE4D235C7FD08 /* Pods-NossoApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOS/Pods-NossoApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		BD54F323D0BC5440BBF21BE4 /* Pods-NossoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp/Pods-NossoApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C8242FB6A924B87A6B7BA92E /* libPods-NossoApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5D874C67A680E4A773A4D28 /* libPods-NossoApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E63F8898CA088D2B138ED67D /* Pods-NossoApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOSTests/Pods-NossoApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2EF9D9E76DE5112CAF857967 /* Pods-NossoApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOS/Pods-NossoApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		479FED433C70FA2726E56523 /* Pods-NossoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp/Pods-NossoApp.debug.xcconfig"; sourceTree = "<group>"; };
+		7051004AC960B1231580132C /* libPods-NossoApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A99DDE10CB7D2A02ECB283B /* Pods-NossoApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOS/Pods-NossoApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		8CE7BF15AB1EA9B8E7913ECC /* Pods-NossoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp.release.xcconfig"; path = "Target Support Files/Pods-NossoApp/Pods-NossoApp.release.xcconfig"; sourceTree = "<group>"; };
+		900F161079EC0279ABB6DF73 /* Pods-NossoApp-NossoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-NossoAppTests.release.xcconfig"; path = "Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E4EBC4499D6159F1A9DDA12 /* Pods-NossoApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp-tvOSTests/Pods-NossoApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D19DFCAD6BA684D85DC5E60E /* libPods-NossoApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CBF115C1DC4E6C9DAC0502 /* libPods-NossoApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DABE06EDC3F9D2118A0EAECC /* Pods-NossoApp-NossoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NossoApp-NossoAppTests.debug.xcconfig"; path = "Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F20A5A03BC683981D14DBBD6 /* libPods-NossoApp-NossoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp-NossoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0E23FD7B0FDE484DE3C04DD /* libPods-NossoApp-NossoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NossoApp-NossoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A767F5F9EF5E8C003672CAEB /* libPods-NossoApp-NossoAppTests.a in Frameworks */,
+				99F6EC3FB4B6187E3CC23406 /* libPods-NossoApp-NossoAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8DA85618B84E490C4D31C68 /* libPods-NossoApp.a in Frameworks */,
+				EF5F95D4CBBA37F2F4458D35 /* libPods-NossoApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D943C8339ABE78C56AF6601 /* libPods-NossoApp-tvOS.a in Frameworks */,
+				EC2C18746AC2B2E045FBBDD6 /* libPods-NossoApp-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09499676B92781A41EFE1A6B /* libPods-NossoApp-tvOSTests.a in Frameworks */,
+				4692E0A26BD31193D7C6A7C7 /* libPods-NossoApp-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				E5D874C67A680E4A773A4D28 /* libPods-NossoApp.a */,
-				F20A5A03BC683981D14DBBD6 /* libPods-NossoApp-NossoAppTests.a */,
-				87CAEB7D7FBC829708A0E8AC /* libPods-NossoApp-tvOS.a */,
-				C8242FB6A924B87A6B7BA92E /* libPods-NossoApp-tvOSTests.a */,
+				7051004AC960B1231580132C /* libPods-NossoApp.a */,
+				F0E23FD7B0FDE484DE3C04DD /* libPods-NossoApp-NossoAppTests.a */,
+				D8CBF115C1DC4E6C9DAC0502 /* libPods-NossoApp-tvOS.a */,
+				D19DFCAD6BA684D85DC5E60E /* libPods-NossoApp-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,14 +185,14 @@
 		DD729EFBD96679EA5C417094 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BD54F323D0BC5440BBF21BE4 /* Pods-NossoApp.debug.xcconfig */,
-				1A3FBED3A2F3376801FA9D06 /* Pods-NossoApp.release.xcconfig */,
-				60D869C4DA67966FCC64F4C3 /* Pods-NossoApp-NossoAppTests.debug.xcconfig */,
-				231438A8713CF6DB52B3D4BA /* Pods-NossoApp-NossoAppTests.release.xcconfig */,
-				1B3BE0E8CFDC5A4AACE9256F /* Pods-NossoApp-tvOS.debug.xcconfig */,
-				B46ACB39F7BFE4D235C7FD08 /* Pods-NossoApp-tvOS.release.xcconfig */,
-				E63F8898CA088D2B138ED67D /* Pods-NossoApp-tvOSTests.debug.xcconfig */,
-				35BA0755AB1D74CA319EC7E6 /* Pods-NossoApp-tvOSTests.release.xcconfig */,
+				479FED433C70FA2726E56523 /* Pods-NossoApp.debug.xcconfig */,
+				8CE7BF15AB1EA9B8E7913ECC /* Pods-NossoApp.release.xcconfig */,
+				DABE06EDC3F9D2118A0EAECC /* Pods-NossoApp-NossoAppTests.debug.xcconfig */,
+				900F161079EC0279ABB6DF73 /* Pods-NossoApp-NossoAppTests.release.xcconfig */,
+				2EF9D9E76DE5112CAF857967 /* Pods-NossoApp-tvOS.debug.xcconfig */,
+				8A99DDE10CB7D2A02ECB283B /* Pods-NossoApp-tvOS.release.xcconfig */,
+				9E4EBC4499D6159F1A9DDA12 /* Pods-NossoApp-tvOSTests.debug.xcconfig */,
+				2CFEC01F8845CD5C95AA3DC2 /* Pods-NossoApp-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,11 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NossoAppTests" */;
 			buildPhases = (
-				A54E796FBB995BCF630A6DB9 /* [CP] Check Pods Manifest.lock */,
+				FDD4C868807447B0C3F96AE5 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				306C1B4C75D3E9E2BFFC3DF9 /* [CP] Copy Pods Resources */,
+				64E91F750953A278EBBAB02C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,13 +224,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NossoApp" */;
 			buildPhases = (
-				24A6F3EBFD21499662384EC8 /* [CP] Check Pods Manifest.lock */,
+				D73DCD11609E3AD9BC926762 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				EEC965CBF9251A54855C76AB /* [CP] Copy Pods Resources */,
+				C0FCA4DE5C7C13B916090058 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,7 +245,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "NossoApp-tvOS" */;
 			buildPhases = (
-				FC6A18FEAD03023F257A4572 /* [CP] Check Pods Manifest.lock */,
+				F1DFD6676F968DDDD56466DF /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -265,7 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "NossoApp-tvOSTests" */;
 			buildPhases = (
-				F5D8F97BD5EF48D9CBBA3E99 /* [CP] Check Pods Manifest.lock */,
+				FD88747D64D182B078223E84 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -377,7 +377,61 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		24A6F3EBFD21499662384EC8 /* [CP] Check Pods Manifest.lock */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		64E91F750953A278EBBAB02C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0FCA4DE5C7C13B916090058 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NossoApp/Pods-NossoApp-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NossoApp/Pods-NossoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D73DCD11609E3AD9BC926762 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -399,105 +453,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		306C1B4C75D3E9E2BFFC3DF9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NossoApp-NossoAppTests/Pods-NossoApp-NossoAppTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A54E796FBB995BCF630A6DB9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NossoApp-NossoAppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EEC965CBF9251A54855C76AB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NossoApp/Pods-NossoApp-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NossoApp/Pods-NossoApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5D8F97BD5EF48D9CBBA3E99 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NossoApp-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FC6A18FEAD03023F257A4572 /* [CP] Check Pods Manifest.lock */ = {
+		F1DFD6676F968DDDD56466DF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -555,6 +511,50 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD88747D64D182B078223E84 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NossoApp-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDD4C868807447B0C3F96AE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NossoApp-NossoAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -624,7 +624,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60D869C4DA67966FCC64F4C3 /* Pods-NossoApp-NossoAppTests.debug.xcconfig */;
+			baseConfigurationReference = DABE06EDC3F9D2118A0EAECC /* Pods-NossoApp-NossoAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -647,7 +647,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 231438A8713CF6DB52B3D4BA /* Pods-NossoApp-NossoAppTests.release.xcconfig */;
+			baseConfigurationReference = 900F161079EC0279ABB6DF73 /* Pods-NossoApp-NossoAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -667,7 +667,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD54F323D0BC5440BBF21BE4 /* Pods-NossoApp.debug.xcconfig */;
+			baseConfigurationReference = 479FED433C70FA2726E56523 /* Pods-NossoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -679,6 +679,7 @@
 					"FB_SONARKIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = NossoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -695,13 +696,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A3FBED3A2F3376801FA9D06 /* Pods-NossoApp.release.xcconfig */;
+			baseConfigurationReference = 8CE7BF15AB1EA9B8E7913ECC /* Pods-NossoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FRMHAB2739;
 				INFOPLIST_FILE = NossoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -717,7 +719,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B3BE0E8CFDC5A4AACE9256F /* Pods-NossoApp-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 2EF9D9E76DE5112CAF857967 /* Pods-NossoApp-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -745,7 +747,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B46ACB39F7BFE4D235C7FD08 /* Pods-NossoApp-tvOS.release.xcconfig */;
+			baseConfigurationReference = 8A99DDE10CB7D2A02ECB283B /* Pods-NossoApp-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -773,7 +775,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E63F8898CA088D2B138ED67D /* Pods-NossoApp-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 9E4EBC4499D6159F1A9DDA12 /* Pods-NossoApp-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -800,7 +802,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35BA0755AB1D74CA319EC7E6 /* Pods-NossoApp-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 2CFEC01F8845CD5C95AA3DC2 /* Pods-NossoApp-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
