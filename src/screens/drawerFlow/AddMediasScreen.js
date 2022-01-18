@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, KeyboardAvoidingView} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Backend from '../../connection/Backend';
 import LoadingScreen from '../../components/LoadingComponent';
@@ -128,39 +128,44 @@ class AddMediasScreen extends React.Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        <BackgroundComponent>
-          <Carousel
-            shouldOptimizeUpdates
-            ref={(c) => {
-              this._carousel = c;
-            }}
-            data={medias}
-            sliderWidth={Math.round(Dimensions.get('window').width)}
-            itemWidth={Math.round(Dimensions.get('window').width)}
-            onSnapToItem={(index) =>
-              this.setState({
-                activeSlideIndex: index,
-                loadingItem: false,
-              })
-            }
-            onBeforeSnapToItem={() => this.setState({loadingItem: true})}
-            renderItem={(currentMedia) => (
-              <AddMediaItem
-                loading={loadingItem}
-                media={medias[activeSlideIndex]}
-                isLastItem={currentMedia.index === medias.length - 1}
-                handleMediasUpload={this.handleMediasUpload}
-                onChangeDescription={this.onChangeDescription}
-                onChangeDate={this.onChangeDate}
-                onChangeUri={this.onChangeUri}
-                onChangeSecretCategory={this.onChangeSecretCategory}
-                onSetMediaType={this.onSetMediaType}
-                edit={edit}
-              />
-            )}
-          />
-          {this.renderPagination()}
-        </BackgroundComponent>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          enabled>
+          <BackgroundComponent>
+            <Carousel
+              shouldOptimizeUpdates
+              ref={(c) => {
+                this._carousel = c;
+              }}
+              data={medias}
+              sliderWidth={Math.round(Dimensions.get('window').width)}
+              itemWidth={Math.round(Dimensions.get('window').width)}
+              onSnapToItem={(index) =>
+                this.setState({
+                  activeSlideIndex: index,
+                  loadingItem: false,
+                })
+              }
+              onBeforeSnapToItem={() => this.setState({loadingItem: true})}
+              renderItem={(currentMedia) => (
+                <AddMediaItem
+                  loading={loadingItem}
+                  media={medias[activeSlideIndex]}
+                  isLastItem={currentMedia.index === medias.length - 1}
+                  handleMediasUpload={this.handleMediasUpload}
+                  onChangeDescription={this.onChangeDescription}
+                  onChangeDate={this.onChangeDate}
+                  onChangeUri={this.onChangeUri}
+                  onChangeSecretCategory={this.onChangeSecretCategory}
+                  onSetMediaType={this.onSetMediaType}
+                  edit={edit}
+                />
+              )}
+            />
+            {this.renderPagination()}
+          </BackgroundComponent>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     );
   }
