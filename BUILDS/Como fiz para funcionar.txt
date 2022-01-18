@@ -1,0 +1,12 @@
+Android:
+  Build (No menu de cima) -> Build bundles / APK -> Build APK (And that's it!)
+
+iOS:
+  Product (No menu de cima) -> Archive
+  Dps que ele gerar o arquivo de archive e abrir o pop-up, clique no arquivo e abrá-o no finder
+  Clique no arquivo `xcodearchive` com os botão direito e selecione `Show package content`
+  Products -> Applications
+  Crie uma pasta chamada `Payload` e arraste o .app para lá 
+  Compress (esqueci a tradução) o `Payload` e renomei para qualquer_coisa.ipa
+  Mude o arquivo para ipa quando ele pedir
+  That's it!  
