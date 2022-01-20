@@ -1,0 +1,35 @@
+html, body, #app{
+  height: 100%;
+  background-image: url("../../../../src/assets/images/backgroundImage.png");
+  background-repeat: round;
+}
+
+
+button {
+  margin-top: 15px;
+  height: 20px;
+  width: 100px;
+}
+
+.Container{
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Download {
+  text-decoration: underline;
+}
+
+.Warning {
+  color: red;
+}
+
+p {
+  color: whitesmoke;
+}

@@ -1,0 +1,20 @@
+Android:
+  Build (No menu de cima) -> Build bundles / APK -> Build APK (And that's it!)
+
+iOS:
+  Product (No menu de cima) -> Archive
+  Dps que ele gerar o arquivo de archive e abrir o pop-up, clique no arquivo e abrá-o no finder
+  Clique no arquivo `xcodearchive` com os botão direito e selecione `Show package content`
+  Products -> Applications
+  Crie uma pasta chamada `Payload` e arraste o .app para lá 
+  Compress (esqueci a tradução) o `Payload` e renomei para qualquer_coisa.ipa
+  Mude o arquivo para ipa quando ele pedir
+
+  Para mandar para o celular (Não sei se ele expira dps de algum tempo. Se não expirar, sucesso. 
+  Se espirar, é só subir o .ipa em um site e baixar de lá quando precisar): 
+    Xcode > cmd+shift+2 > devices > drag and drop .ipa file
+  That's it!  
+
+  Fonte pro iOS:
+    https://stackoverflow.com/a/49478854
+    https://medium.com/@itskaranzzz/how-to-install-ipa-file-directly-to-iphones-tabs-without-using-laptop-desktop-e645c36125d2
